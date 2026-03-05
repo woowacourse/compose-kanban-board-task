@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.CustomColor
@@ -36,9 +37,9 @@ fun Tags(tags: List<String>?) {
 fun TagBox(filteredTag: String) {
     Box(
         modifier = Modifier
+            .clip(RoundedCornerShape(14.dp))
             .background(
                 color = CustomColor.TAG_BACKGROUND.color,
-                shape = RoundedCornerShape(14.dp),
             )
             .padding(vertical = 4.dp, horizontal = 6.dp)
         ,
