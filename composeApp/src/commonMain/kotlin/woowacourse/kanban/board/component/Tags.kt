@@ -17,18 +17,14 @@ import woowacourse.kanban.board.CustomColor
 
 @Composable
 fun Tags(tags: List<String>?) {
-    if (tags != null) {
-        FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            val tagsCount = if(tags.size > 5) 5 else tags.size
-            for (i in 0 until tagsCount) {
-                val filteredTag = if (tags[i].length > 5) tags[i].substring(0 until 5) else tags[i]
-                TagBox(filteredTag)
-            }
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier
+            .fillMaxWidth(),
+    ) {
+        tags?.take(5)?.forEach { tag ->
+            TagBox(tag)
         }
     }
 }
@@ -41,8 +37,7 @@ fun TagBox(filteredTag: String) {
             .background(
                 color = CustomColor.TAG_BACKGROUND.color,
             )
-            .padding(vertical = 4.dp, horizontal = 6.dp)
-        ,
+            .padding(vertical = 4.dp, horizontal = 6.dp),
     ) {
         Text(
             text = filteredTag,
