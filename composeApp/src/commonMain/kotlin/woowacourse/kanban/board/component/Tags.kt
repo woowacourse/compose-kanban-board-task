@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.CustomColor
+import woowacourse.kanban.board.Size
 
 @Composable
 fun Tags(tags: List<String>?) {
@@ -23,8 +24,8 @@ fun Tags(tags: List<String>?) {
         modifier = Modifier
             .fillMaxWidth(),
     ) {
-        tags?.take(5)?.forEach { tag ->
-            TagBox(tag)
+        tags?.take(Size.TAGS.value)?.forEach { tag ->
+            TagBox(tag.take(Size.TAG_TEXT_LENGTH.value))
         }
     }
 }
