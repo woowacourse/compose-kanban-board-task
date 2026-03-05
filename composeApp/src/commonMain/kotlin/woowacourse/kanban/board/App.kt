@@ -19,10 +19,10 @@ import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.component.Profile
 import woowacourse.kanban.board.component.Script
 import woowacourse.kanban.board.component.Tags
+import woowacourse.kanban.board.component.TaskCard
 import woowacourse.kanban.board.component.Title
 
 @Composable
-@Preview(showBackground = true)
 fun App() {
     FlowRow(
         modifier = Modifier
@@ -61,35 +61,3 @@ fun App() {
     }
 }
 
-@Composable
-fun TaskCard(
-    title: String,
-    script: String? = null,
-    tags: List<String>? = null,
-    nickname: String,
-) {
-    Card(
-        modifier = Modifier
-            .width(286.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White,
-        ),
-        border = BorderStroke(1.dp, CustomColor.CARD_BORDER.color),
-        shape = RoundedCornerShape(10.dp),
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(17.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Title(title)
-            Script(script)
-            Tags(tags)
-            HorizontalDivider(
-                thickness = 1.dp,
-                color = CustomColor.DIVIDER.color
-            )
-            Profile(nickname)
-        }
-    }
-}
