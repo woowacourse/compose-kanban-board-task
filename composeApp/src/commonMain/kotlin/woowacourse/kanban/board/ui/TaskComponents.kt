@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -34,32 +36,26 @@ import org.jetbrains.compose.resources.painterResource
 import woowacourse.kanban.board.model.TaskCardDto
 import woowacourse.kanban.board.model.TaskCardDtoProvider
 
-@Preview()
+@Preview(showBackground = true)
 @Composable
 fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCardDto) {
-    OutlinedCard(
+    Card(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
-        border = BorderStroke(1.dp, Color.Black),
+        border = BorderStroke(1.dp, Color.Gray),
         modifier = Modifier.width(286.dp),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(17.dp)
         ) {
             // 제목
             TaskTitle(taskCardDto.title)
-            Text(
-                text = taskCardDto.contents,
-                modifier = Modifier
-                    .size(width = 252.dp, height = 40.dp)
-                    .align(Alignment.CenterHorizontally),
-                fontSize = 14.sp,
-                color = Color.Gray,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
+            // 내용
+            TaskContents(taskCardDto.contents)
+
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -92,7 +88,7 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
                         .align(Alignment.CenterVertically),
                     fontSize = 14.sp,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
         }
@@ -101,7 +97,7 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
 
 @Preview(showBackground = true)
 @Composable
-fun TaskTitle(@PreviewParameter(TitleProvider::class) title: String) {
+private fun TaskTitle(@PreviewParameter(TitleProvider::class) title: String) {
     Text(
         text = title,
         modifier = Modifier
@@ -109,13 +105,34 @@ fun TaskTitle(@PreviewParameter(TitleProvider::class) title: String) {
         fontSize = 16.sp,
         fontWeight = FontWeight.Bold,
         maxLines = 1,
-        overflow = TextOverflow.Ellipsis
+        overflow = TextOverflow.Ellipsis,
     )
 }
 
-class TitleProvider : PreviewParameterProvider<String> {
+private class TitleProvider : PreviewParameterProvider<String> {
     override val values: Sequence<String> = sequenceOf(
         "제목",
-        "너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무 긴 제목"
+        "너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무 긴 제목",
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TaskContents(@PreviewParameter(ContentsProvider::class) contents: String) {
+    Text(
+        text = contents,
+        modifier = Modifier
+            .size(width = 252.dp, height = 40.dp),
+        fontSize = 14.sp,
+        color = Color.Gray,
+        maxLines = 2,
+        overflow = TextOverflow.Ellipsis,
+    )
+}
+
+private class ContentsProvider : PreviewParameterProvider<String> {
+    override val values: Sequence<String> = sequenceOf(
+        "내용",
+        "너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무 긴 내용",
     )
 }
