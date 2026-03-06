@@ -1,4 +1,4 @@
-package woowacourse.kanban.board
+package woowacourse.kanban.board.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.model.TaskCard
 
 @Composable
 fun OpenInputWindow(taskCardGroup: SnapshotStateList<TaskCard>, openInputWindow: MutableState<Boolean>) {
