@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,8 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -89,35 +89,55 @@ private fun KanbanCardTags(tags: List<String>) {
     }
 }
 
-@Preview(device = Devices.DESKTOP)
-@Composable
-private fun KanbanCardOptionalPreview() {
+data class KanbanCardInfo(
+    val title: String,
+    val crewName: String,
+    val modifier: Modifier = Modifier,
+    val tags: List<String> = emptyList(),
+    val content: String = "",
+    val crewImage: DrawableResource? = null,
+)
+
+class KanbanCardPreviewParameterProvider : PreviewParameterProvider<KanbanCardInfo> {
     val tags = listOf("컴포넌트", "성능")
-    Row(
-        modifier = Modifier
-            .padding(12.dp)
-            .background(Color.White),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        KanbanCard(
+    override val values = sequenceOf(
+        KanbanCardInfo(
             title = "LazyColumn 컴포넌트 구현",
             crewName = "바드",
             tags = tags,
             content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
-        )
-        KanbanCard(
+        ),
+        KanbanCardInfo(
             title = "LazyColumn 컴포넌트 구현",
             crewName = "바드",
             tags = tags,
-        )
-        KanbanCard(
+            content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
+        ),
+        KanbanCardInfo(
             title = "LazyColumn 컴포넌트 구현",
             crewName = "바드",
             content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
-        )
-        KanbanCard(
+        ),
+        KanbanCardInfo(
             title = "LazyColumn 컴포넌트 구현",
             crewName = "바드",
+        )
+    )
+}
+
+@Preview
+@Composable
+private fun KanbanCardPreview(
+    @PreviewParameter(KanbanCardPreviewParameterProvider::class) kanbanCardInfo: KanbanCardInfo
+) {
+    Box(modifier = Modifier.padding(12.dp)) {
+        KanbanCard(
+            title = kanbanCardInfo.title,
+            crewName = kanbanCardInfo.crewName,
+            modifier = kanbanCardInfo.modifier,
+            tags = kanbanCardInfo.tags,
+            content = kanbanCardInfo.content,
+            crewImage = kanbanCardInfo.crewImage
         )
     }
 }
