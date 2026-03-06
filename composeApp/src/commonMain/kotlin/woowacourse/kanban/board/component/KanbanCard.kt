@@ -121,15 +121,13 @@ class KanbanCardPreviewParameterProvider : PreviewParameterProvider<KanbanCardIn
         KanbanCardInfo(
             title = "LazyColumn 컴포넌트 구현",
             crewName = "바드",
-        )
+        ),
     )
 }
 
 @Preview
 @Composable
-private fun KanbanCardPreview(
-    @PreviewParameter(KanbanCardPreviewParameterProvider::class) kanbanCardInfo: KanbanCardInfo
-) {
+private fun KanbanCardPreview(@PreviewParameter(KanbanCardPreviewParameterProvider::class) kanbanCardInfo: KanbanCardInfo) {
     Box(modifier = Modifier.padding(12.dp)) {
         KanbanCard(
             title = kanbanCardInfo.title,
@@ -137,7 +135,7 @@ private fun KanbanCardPreview(
             modifier = kanbanCardInfo.modifier,
             tags = kanbanCardInfo.tags,
             content = kanbanCardInfo.content,
-            crewImage = kanbanCardInfo.crewImage
+            crewImage = kanbanCardInfo.crewImage,
         )
     }
 }
