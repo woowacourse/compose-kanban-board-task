@@ -29,7 +29,7 @@ fun InputWindow(taskCardGroup: SnapshotStateList<TaskCardDto>, showInputWindow: 
     var tags by remember { mutableStateOf(listOf<String>()) }
     var author by remember { mutableStateOf("다이노") }
 
-    OutlinedCard {
+    OutlinedCard(modifier = Modifier.padding(10.dp)) {
         Column(modifier = Modifier.padding(10.dp)) {
             // 제목 입력
             OutlinedTextField(

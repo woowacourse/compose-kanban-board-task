@@ -19,7 +19,7 @@ data class TaskCardDto(
         TaskCardDto(
             title = "제목",
             contents = "내용",
-            tags = listOf("태그", "태그222"),
+            tags = listOf("태그", "태그222", "태그3", "태그4", "태그5"),
             author = "별터"
         ),
         TaskCardDto(
@@ -27,6 +27,12 @@ data class TaskCardDto(
             contents = "",
             tags = listOf(""),
             author = "별터"
-        )
+        ),
+        TaskCardDto(
+            title = "제목",
+            contents = "",
+            tags = listOf("태그"),
+            author = "별터"
+        ),
     )
 }
