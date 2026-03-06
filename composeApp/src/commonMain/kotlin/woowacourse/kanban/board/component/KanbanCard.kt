@@ -73,7 +73,7 @@ class TagPreviewParameterProvider : PreviewParameterProvider<KanbanCardPreviewDa
         KanbanCardPreviewData(tags = TAG_GROUP_EX),
         KanbanCardPreviewData(content = CONTENT_EX, tags = TAG_GROUP_EX),
         KanbanCardPreviewData(),
-        KanbanCardPreviewData(title = TITLE_MAX_EX,content = CONTENT_EX, TAG_GROUP_MAX_EX, name = CONTENT_MAX_EX)
+        KanbanCardPreviewData(title = TITLE_MAX_EX, content = CONTENT_EX, TAG_GROUP_MAX_EX, name = CONTENT_MAX_EX)
     )
 }
 
