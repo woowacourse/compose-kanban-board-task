@@ -22,4 +22,4 @@
 - [ ] CreateTaskCard 함수 내 책임 분리
 - [ ] 태그의 길이와 개수를 제한하는 책임 분리하기(태그 6개 입력 가능 오류 수정)
 - [ ] Composable 이 값을 반환하는 부분을 수정
-- [ ] image 의 contentDescription 추가
+- [x] image 의 contentDescription 추가

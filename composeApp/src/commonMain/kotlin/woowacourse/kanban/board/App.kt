@@ -70,7 +70,7 @@ fun AddButton(modifier: Modifier, openInputWindow: MutableState<Boolean>) {
         Row {
             Image(
                 painter = painterResource(Res.drawable.task_planet),
-                contentDescription = "",
+                contentDescription = "추가 버튼 - 할일 행성이",
                 modifier = Modifier.size(50.dp),
             )
             Text(
@@ -143,7 +143,7 @@ fun CreateTaskCard(taskCard: TaskCard) {
             ) {
                 Image(
                     painter = painterResource(Res.drawable.profile_image),
-                    contentDescription = "",
+                    contentDescription = "프로필 이미지",
                     modifier = Modifier
                         .size(24.dp)
                         .align(Alignment.CenterVertically),
