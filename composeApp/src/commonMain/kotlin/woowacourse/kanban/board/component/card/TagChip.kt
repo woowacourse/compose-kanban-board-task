@@ -8,11 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.theme.Color.blueGray100
 
 @Composable
 fun TagChip(
@@ -23,7 +23,7 @@ fun TagChip(
     Box(
         modifier = modifier
             .clip(CircleShape)
-            .background(Color(0xFFF3F4F6))
+            .background(blueGray100)
     ) {
         Text(
             text = tag.take(maxLength),

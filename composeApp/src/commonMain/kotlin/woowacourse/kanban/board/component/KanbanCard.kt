@@ -11,13 +11,14 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.component.card.ContentText
 import woowacourse.kanban.board.component.card.TitleText
 import woowacourse.kanban.board.component.card.Profile
 import woowacourse.kanban.board.component.card.TagChipGroup
+import woowacourse.kanban.board.theme.Color.blueGray100
+import woowacourse.kanban.board.theme.Color.blueGray200
 
 @Composable
 fun KanbanCard(
@@ -30,14 +31,14 @@ fun KanbanCard(
         modifier = Modifier
             .width(286.dp)
             .clip(RoundedCornerShape(10.dp))
-            .border(1.dp, Color(0xffE5E7EB), shape = RoundedCornerShape(10.dp))
+            .border(1.dp, blueGray100, shape = RoundedCornerShape(10.dp))
             .padding(17.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         TitleText(title)
         ContentText(content)
         TagChipGroup(tags)
-        HorizontalDivider(color = Color(0xffE5E7EB))
+        HorizontalDivider(color = blueGray200)
         Profile(name)
     }
 }

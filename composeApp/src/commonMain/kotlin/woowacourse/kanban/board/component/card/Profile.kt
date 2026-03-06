@@ -10,12 +10,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.theme.Color.blueGray300
+import woowacourse.kanban.board.theme.Color.blueGray700
 
 @Composable
 fun Profile(
@@ -31,7 +32,7 @@ fun Profile(
         Icon(
             imageVector = Icons.Default.AccountCircle,
             contentDescription = "프로필 이미지",
-            tint = Color(0xFF838383)
+            tint = blueGray300
         )
 
         Text(
@@ -39,7 +40,7 @@ fun Profile(
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             lineHeight = 20.sp,
-            color = Color(0xFF364153),
+            color = blueGray700,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1
         )
