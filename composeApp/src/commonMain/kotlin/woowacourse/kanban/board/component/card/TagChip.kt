@@ -36,14 +36,17 @@ fun TagChip(
     }
 }
 
+const val TAG_EX = "컴포넌트"
+const val TAG_MAX_EX = "안녕하세요긴거입니다"
+
 @Preview(showBackground = true)
 @Composable
 fun TagChipPreview() {
-    TagChip(tag = "안녕")
+    TagChip(TAG_EX)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun TagChipMaxPreview() {
-    TagChip(tag = "안녕하세요긴거입니다")
+    TagChip(TAG_MAX_EX)
 }

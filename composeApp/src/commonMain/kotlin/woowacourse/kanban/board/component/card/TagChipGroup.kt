@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.component.TAG_GROUP_MAX_EX
 
 @Composable
 fun TagChipGroup(
@@ -31,11 +32,10 @@ fun TagChipGroup(
 @Preview(showBackground = true)
 @Composable
 fun TagChipGroupPreview() {
-    val tags = listOf("dd", "dd", "dd", "ddd", "Fff", "dd")
     Box(
         modifier = Modifier
             .width(100.dp),
     ) {
-        TagChipGroup(tags = tags)
+        TagChipGroup(TAG_GROUP_MAX_EX)
     }
 }

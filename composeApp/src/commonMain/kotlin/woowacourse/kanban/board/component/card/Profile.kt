@@ -15,6 +15,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.component.NAME_EX
+import woowacourse.kanban.board.component.NAME_MAX_EX
 import woowacourse.kanban.board.theme.Color.blueGray300
 import woowacourse.kanban.board.theme.Color.blueGray700
 
@@ -50,11 +52,11 @@ fun Profile(
 @Preview(showBackground = true)
 @Composable
 fun ProfilePreview() {
-    Profile(name = "김철수")
+    Profile(NAME_EX)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun ProfileNameMaxPreview() {
-    Profile(name = "김철수김철수김철수김철수김철수김철수김철수김철수김철수김철수김철수김철수")
+    Profile(NAME_MAX_EX)
 }

@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.component.CONTENT_EX
+import woowacourse.kanban.board.component.CONTENT_MAX_EX
 import woowacourse.kanban.board.theme.Color.blueGray500
 
 @Composable
@@ -24,11 +26,11 @@ fun ContentText(content: String? = null) {
 @Composable
 @Preview(showBackground = true)
 fun ContentTextPreview() {
-    ContentText(content = "LazyColumn 컴포넌트 구현")
+    ContentText(CONTENT_EX)
 }
 
 @Composable
 @Preview(showBackground = true)
 fun ContentTextMaxPreview() {
-    ContentText(content = "LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현")
+    ContentText(CONTENT_MAX_EX)
 }

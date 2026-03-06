@@ -6,6 +6,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.component.TITLE_MAX_EX
 
 @Composable
 fun TitleText(title: String? = null) {
@@ -28,5 +29,5 @@ fun TitleTextPreview() {
 @Preview(showBackground = true)
 @Composable
 fun TitleTextMaxPreview() {
-    TitleText(title = "너무너무 긴 제목은 한 줄까지만 노출너무너무 긴 제목은 한 줄까지만 노출...너무너무 긴 제목은 한 줄까지만 노출...너무너무 긴 제목은 한 줄까지만 노출...너무너무 긴 제목은 한 줄까지만 노출...너무너무 긴 제목은 한 줄까지만 노출...너무너무 긴 제목은 한 줄까지만 노출...")
+    TitleText(TITLE_MAX_EX)
 }
