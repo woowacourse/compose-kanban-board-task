@@ -17,9 +17,9 @@
 ### 5. 예외 사항
 - 태그가 6자 이상이거나 6개 이상일 때 에러 메시지를 출력한다.
 
-## 리팩터링 체크리스트
+## 리팩토링 체크리스트
 - [ ] Composable 함수 rename
-- [ ] CreateTaskCard 함수 내 책임 분리
+- [X] CreateTaskCard 함수 내 책임 분리
 - [ ] 태그의 길이와 개수를 제한하는 책임 분리하기(태그 6개 입력 가능 오류 수정)
 - [ ] Composable 이 값을 반환하는 부분을 수정
 - [x] image 의 contentDescription 추가
