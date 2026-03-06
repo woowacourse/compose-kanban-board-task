@@ -9,23 +9,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import org.w3c.dom.css.Counter
 import woowacourse.kanban.board.component.TAG_GROUP_MAX_EX
 
 @Composable
 fun TagChipGroup(
     tags: List<String>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    maxCount: Int = 5,
 ) {
     FlowRow(
         modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        tags.forEachIndexed { index, tag ->
-            if (index < 5) {
+        tags.take(maxCount)
+            .forEach { tag ->
                 TagChip(tag = tag)
             }
-        }
     }
 }
 
