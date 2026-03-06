@@ -3,21 +3,19 @@ package woowacourse.kanban.board.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,7 +42,7 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
     Card(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         border = BorderStroke(1.dp, Color.Gray),
-        modifier = Modifier.width(286.dp)
+        modifier = Modifier.width(286.dp),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -54,16 +52,27 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
             // 제목
             TaskTitle(taskCardDto.title)
             // 내용
-            TaskContents(taskCardDto.contents)
+            if (taskCardDto.contents.isNotBlank() ) TaskContents(taskCardDto.contents)
             // 태그
-            TaskTags(taskCardDto.tags)
+            if (taskCardDto.tags.all { it.isNotBlank() } ) TaskTags(taskCardDto.tags)
             // 작성자
             TaskAuthor(taskCardDto.author)
         }
     }
 }
 
-@Preview(showBackground = true)
+@Composable
+fun TaskCardList(taskCardDtoGroup: List<TaskCardDto>) {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        items(taskCardDtoGroup.size) { item ->
+            TaskCard(taskCardDto = taskCardDtoGroup[item])
+        }
+    }
+}
+
+// @Preview(showBackground = true)
 @Composable
 private fun TaskTitle(@PreviewParameter(TitleProvider::class) title: String) {
     Text(
@@ -84,7 +93,7 @@ private class TitleProvider : PreviewParameterProvider<String> {
     )
 }
 
-@Preview(showBackground = true)
+// @Preview(showBackground = true)
 @Composable
 private fun TaskContents(@PreviewParameter(ContentsProvider::class) contents: String) {
     Text(
@@ -109,7 +118,7 @@ private class ContentsProvider : PreviewParameterProvider<String> {
 private fun TaskTags(tags: List<String>) {
     FlowRow(
         modifier = Modifier.fillMaxWidth().height(24.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         tags.forEach { tag ->
             Tag(tag)
@@ -117,7 +126,7 @@ private fun TaskTags(tags: List<String>) {
     }
 }
 
-@Preview(showBackground = true)
+// @Preview(showBackground = true)
 @Composable
 private fun Tag(@PreviewParameter(TagProvider::class) tag: String) {
     SuggestionChip(
@@ -125,7 +134,7 @@ private fun Tag(@PreviewParameter(TagProvider::class) tag: String) {
         onClick = { },
         modifier = Modifier
             .wrapContentWidth(Alignment.CenterHorizontally)
-            .height(24.dp)
+            .height(24.dp),
     )
 }
 
@@ -141,20 +150,20 @@ private fun TaskAuthor(author: String) {
     Row(
         modifier = Modifier.size(width = 252.dp, height = 45.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         AuthorIdleImage()
         AuthorName(author)
     }
 }
 
-@Preview(showBackground = true)
+// @Preview(showBackground = true)
 @Composable
 private fun AuthorIdleImage() {
     Image(
         painter = painterResource(Res.drawable.profile_image),
         contentDescription = "프로필 이미지",
-        modifier = Modifier.size(24.dp)
+        modifier = Modifier.size(24.dp),
     )
 }
 
@@ -165,6 +174,6 @@ private fun AuthorName(author: String) {
         modifier = Modifier.height(20.dp),
         fontSize = 14.sp,
         maxLines = 1,
-        overflow = TextOverflow.Ellipsis
+        overflow = TextOverflow.Ellipsis,
     )
 }
