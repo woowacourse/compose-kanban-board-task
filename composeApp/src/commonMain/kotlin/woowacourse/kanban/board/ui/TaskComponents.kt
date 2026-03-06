@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,25 +51,15 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(17.dp)
+            modifier = Modifier.padding(17.dp),
         ) {
             // 제목
             TaskTitle(taskCardDto.title)
             // 내용
             TaskContents(taskCardDto.contents)
+            // 태그
+            TaskTags(taskCardDto.tags)
 
-            FlowRow(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                taskCardDto.tags.forEach { tag ->
-                    SuggestionChip(
-                        label = { Text(tag) },
-                        onClick = { },
-                    )
-                }
-            }
             Row(
                 modifier = Modifier
                     .size(width = 252.dp, height = 45.dp),
@@ -134,5 +126,36 @@ private class ContentsProvider : PreviewParameterProvider<String> {
     override val values: Sequence<String> = sequenceOf(
         "내용",
         "너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무너무 긴 내용",
+    )
+}
+
+@Composable
+private fun TaskTags(tags: List<String>) {
+    FlowRow(
+        modifier = Modifier.fillMaxWidth().height(24.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        tags.forEach { tag ->
+            Tag(tag)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Tag(@PreviewParameter(TagProvider::class) tag: String) {
+    SuggestionChip(
+        label = { Text(tag, style = TextStyle(fontSize = 12.sp)) },
+        onClick = { },
+        modifier = Modifier
+            .wrapContentWidth(Alignment.CenterHorizontally)
+            .height(24.dp)
+    )
+}
+
+private class TagProvider : PreviewParameterProvider<String> {
+    override val values: Sequence<String> = sequenceOf(
+        "태그",
+        "태그222",
     )
 }
