@@ -42,11 +42,9 @@ import woowacourse.kanban.board.model.TaskCardDtoProvider
 @Composable
 fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCardDto) {
     Card(
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
-        ),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         border = BorderStroke(1.dp, Color.Gray),
-        modifier = Modifier.width(286.dp),
+        modifier = Modifier.width(286.dp)
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -59,30 +57,8 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
             TaskContents(taskCardDto.contents)
             // 태그
             TaskTags(taskCardDto.tags)
-
-            Row(
-                modifier = Modifier
-                    .size(width = 252.dp, height = 45.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Image(
-                    painter = painterResource(Res.drawable.profile_image),
-                    contentDescription = "프로필 이미지",
-                    modifier = Modifier
-                        .size(24.dp)
-                        .align(Alignment.CenterVertically),
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = taskCardDto.author,
-                    modifier = Modifier
-                        .height(20.dp)
-                        .align(Alignment.CenterVertically),
-                    fontSize = 14.sp,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
+            // 작성자
+            TaskAuthor(taskCardDto.author)
         }
     }
 }
@@ -157,5 +133,38 @@ private class TagProvider : PreviewParameterProvider<String> {
     override val values: Sequence<String> = sequenceOf(
         "태그",
         "태그222",
+    )
+}
+
+@Composable
+private fun TaskAuthor(author: String) {
+    Row(
+        modifier = Modifier.size(width = 252.dp, height = 45.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        AuthorIdleImage()
+        AuthorName(author)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AuthorIdleImage() {
+    Image(
+        painter = painterResource(Res.drawable.profile_image),
+        contentDescription = "프로필 이미지",
+        modifier = Modifier.size(24.dp)
+    )
+}
+
+@Composable
+private fun AuthorName(author: String) {
+    Text(
+        text = author,
+        modifier = Modifier.height(20.dp),
+        fontSize = 14.sp,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
     )
 }
