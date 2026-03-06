@@ -54,7 +54,7 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
             // 내용
             if (taskCardDto.contents.isNotBlank() ) TaskContents(taskCardDto.contents)
             // 태그
-            if (taskCardDto.tags.all { it.isNotBlank() } ) TaskTags(taskCardDto.tags)
+            if (taskCardDto.tags.isNotEmpty() && taskCardDto.tags.all { it.isNotEmpty() } ) TaskTags(taskCardDto.tags)
             // 작성자
             TaskAuthor(taskCardDto.author)
         }
@@ -62,12 +62,12 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
 }
 
 @Composable
-fun TaskCardList(taskCardDtoGroup: List<TaskCardDto>) {
+fun TaskCardList(taskCardGroup: List<TaskCardDto>) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(taskCardDtoGroup.size) { item ->
-            TaskCard(taskCardDto = taskCardDtoGroup[item])
+        items(taskCardGroup.size) { item ->
+            TaskCard(taskCardDto = taskCardGroup[item])
         }
     }
 }
@@ -117,8 +117,9 @@ private class ContentsProvider : PreviewParameterProvider<String> {
 @Composable
 private fun TaskTags(tags: List<String>) {
     FlowRow(
-        modifier = Modifier.fillMaxWidth().height(24.dp),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         tags.forEach { tag ->
             Tag(tag)
@@ -132,16 +133,14 @@ private fun Tag(@PreviewParameter(TagProvider::class) tag: String) {
     SuggestionChip(
         label = { Text(tag, style = TextStyle(fontSize = 12.sp)) },
         onClick = { },
-        modifier = Modifier
-            .wrapContentWidth(Alignment.CenterHorizontally)
-            .height(24.dp),
+        modifier = Modifier.height(24.dp),
     )
 }
 
 private class TagProvider : PreviewParameterProvider<String> {
     override val values: Sequence<String> = sequenceOf(
         "태그",
-        "태그222",
+        "태그222"
     )
 }
 
