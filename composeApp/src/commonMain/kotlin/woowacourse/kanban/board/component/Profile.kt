@@ -10,12 +10,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
 import org.jetbrains.compose.resources.painterResource
 import woowacourse.kanban.board.CustomColor
+
+@Preview(showBackground = true)
+@Composable
+private fun ProfilePreview() {
+    Profile("다이노다이노 너무 긴 이름이면 줄임표 나오는지 확인해보자다이노다이노 너무 긴 이름이면 줄임표 나오는지 확인해보자")
+}
 
 @Composable
 fun Profile(nickname: String) {

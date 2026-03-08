@@ -19,7 +19,7 @@ import woowacourse.kanban.board.CustomColor
 
 @Preview
 @Composable
-fun TaskCardPreview() {
+private fun TaskCardPreview() {
     TaskCard(
         title = "LazyColumn 컴포넌트 구현",
         script = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
