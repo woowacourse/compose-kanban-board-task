@@ -28,14 +28,16 @@ private fun TagsPreview() {
 
 @Composable
 fun Tags(tags: List<String>?) {
-    FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = Modifier
-            .fillMaxWidth(),
-    ) {
-        tags?.take(Size.TAGS.value)?.forEach { tag ->
-            TagBox(tag.take(Size.TAG_TEXT_LENGTH.value))
+    if(!tags.isNullOrEmpty()) {
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier
+                .fillMaxWidth(),
+        ) {
+            tags?.take(Size.TAGS.value)?.forEach { tag ->
+                TagBox(tag.take(Size.TAG_TEXT_LENGTH.value))
+            }
         }
     }
 }

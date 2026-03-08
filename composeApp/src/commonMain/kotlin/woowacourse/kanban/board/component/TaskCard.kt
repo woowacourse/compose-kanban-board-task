@@ -15,25 +15,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.CustomColor
+import woowacourse.kanban.board.model.TaskCardData
 
 
 @Preview
 @Composable
 private fun TaskCardPreview() {
     TaskCard(
-        title = "LazyColumn 컴포넌트 구현",
-        script = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
-        tags = listOf("컴포넌트", "성능"),
-        nickname = "다이노",
+        data = TaskCardData(
+            title = "LazyColumn 컴포넌트 구현",
+            script = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
+            tags = listOf("컴포넌트", "성능"),
+            nickname = "다이노",
+        ),
     )
 }
 
 @Composable
 fun TaskCard(
-    title: String,
-    script: String? = null,
-    tags: List<String>? = null,
-    nickname: String,
+    data: TaskCardData,
 ) {
     Card(
         modifier = Modifier
@@ -47,16 +47,16 @@ fun TaskCard(
         Column(
             modifier = Modifier
                 .padding(17.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Title(title)
-            Script(script)
-            Tags(tags)
+            Title(data.title)
+            Script(data.script)
+            Tags(data.tags)
             HorizontalDivider(
                 thickness = 1.dp,
-                color = CustomColor.DIVIDER.color
+                color = CustomColor.DIVIDER.color,
             )
-            Profile(nickname)
+            Profile(data.nickname)
         }
     }
 }

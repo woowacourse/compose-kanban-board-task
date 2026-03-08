@@ -25,20 +25,22 @@ private fun ProfilePreview() {
 }
 
 @Composable
-fun Profile(nickname: String) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Image(
-            painter = painterResource(Res.drawable.profile),
-            contentDescription = "프로필 이미지",
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = nickname,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            color = CustomColor.PROFILE_NICKNAME.color,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-        )
+fun Profile(nickname: String?) {
+    if (!nickname.isNullOrEmpty()) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Image(
+                painter = painterResource(Res.drawable.profile),
+                contentDescription = "프로필 이미지",
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = nickname,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = CustomColor.PROFILE_NICKNAME.color,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
     }
 }

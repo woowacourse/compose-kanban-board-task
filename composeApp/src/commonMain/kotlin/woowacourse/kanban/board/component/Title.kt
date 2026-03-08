@@ -17,13 +17,15 @@ private fun TitlePreview() {
 }
 
 @Composable
-fun Title(title: String) {
-    Text(
-        text = title,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Bold,
-        color = CustomColor.TITLE.color,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis,
-    )
+fun Title(title: String?) {
+    if (!title.isNullOrEmpty()) {
+        Text(
+            text = title,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            color = CustomColor.TITLE.color,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
 }

@@ -18,12 +18,15 @@ private fun ScriptPreview() {
 
 @Composable
 fun Script(script: String?) {
-    if (script != null) Text(
-        text = script,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.Normal,
-        color = CustomColor.SCRIPT.color,
-        maxLines = 2,
-        overflow = TextOverflow.Ellipsis,
-    )
+    if (!script.isNullOrEmpty()) {
+        Text(
+            text = script,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Normal,
+            color = CustomColor.SCRIPT.color,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
+
 }
