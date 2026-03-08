@@ -20,12 +20,11 @@
   - TaskCardData의 nickname이 null이면 예외가 발생한다.
   - TaskCardData의 nickname이 빈 값이면 예외가 발생한다.
 
-- [ ] UI 테스트 구현하기
+- [x] UI 테스트 구현하기
   - Script에 빈 값이 들어오면 Script 컴포넌트가 출력되지 않는다.
   - Script에 빈 값이 들어오지 않으면 Script 컴포넌트가 출력된다.
   - Tags에 빈 태그 리스트가 들어오면 Tags 컴포넌트가 출력되지 않는다.
   - Tags에 요소가 1개 이상인 태그 리스트가 들어오면 Tags 컴포넌트가 출력된다.
   - Tags의 태그 최대 개수를 6개로 설정하면 6개까지 Tag 컴포넌트가 출력된다.
-  - Tags의 태그당 최대 글자수를 10자로 설정하면 Tag의 텍스트가 10자까지 출력된다.
   - TaskCardData의 모든 값이 빈 값, null이 아니면 title, script, tags, nickname 컴포넌트가 출력된다.
   
