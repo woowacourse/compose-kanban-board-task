@@ -31,27 +31,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun App() {
-    CardBoardView()
-}
 
-@Composable
-@Preview(showBackground = false)
-fun CardBoardView() {
-    val testDataCollection = listOf(
-        CardData(EXAMPLE_TITLE, EXAMPLE_CONTENT, listOf("컴포넌트", "성능"), EXAMPLE_WRITER),
-        CardData(EXAMPLE_TITLE, null, listOf("컴포넌트", "성능"), EXAMPLE_WRITER),
-        CardData(EXAMPLE_TITLE, EXAMPLE_CONTENT, listOf(), EXAMPLE_WRITER),
-        CardData(EXAMPLE_TITLE,null, listOf(), EXAMPLE_WRITER),
-        CardData(MAX_TITLE, MAX_CONTENT, listOf("너무너무", "긴 태그", "최대로", "5자까지", "5개제한임"), MAX_WRITER)
-    )
-
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        items(items = testDataCollection) { card ->
-            KanbanBoardCard(card)
-        }
-    }
 }
 
 // KanbanBoardTaskCard 컴포넌트
@@ -83,7 +63,7 @@ fun KanbanBoardCard(cardData: CardData) {
             HorizontalDivider(thickness = 2.dp)
 
             // 작성자 컴포넌트 선언부
-            CardWriter(cardData.writer)
+            CardWriterProfile(cardData.writer)
         }
     }
 }
@@ -148,27 +128,78 @@ fun CardTags (tags: List<String>) {
 
 // icon & writer 컴포넌트 생성 함수
 @Composable
-fun CardWriter(writer: String) {
+fun CardWriterProfile(writer: String) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            imageVector = Icons.Default.Person,
-            contentDescription = null,
-            tint = Color.White,
-            modifier = Modifier
-                .size(25.dp, 25.dp)
-                .clip(CircleShape)
-                .border(width = 2.dp, color = Color.Gray)
-                .background(color = Color.Gray),
+        CardWriterIcon()
+        CardWriterNickname(writer)
+    }
+}
+
+@Composable
+fun CardWriterIcon() {
+    Icon(
+        imageVector = Icons.Default.Person,
+        contentDescription = null,
+        tint = Color.White,
+        modifier = Modifier
+            .size(25.dp, 25.dp)
+            .clip(CircleShape)
+            .border(width = 2.dp, color = Color.Gray)
+            .background(color = Color.Gray),
+    )
+}
+
+@Composable
+fun CardWriterNickname(writer: String) {
+    Text(
+        writer,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
+        fontSize = 14.sp,
+        color = Color(WRITER_TEXT_COLOR)
+    )
+}
+
+@Composable
+@Preview(showBackground = false)
+private fun CardBoardPreview() {
+    val testDataCollection = listOf(
+        CardData.createCard(
+            title = EXAMPLE_TITLE,
+            content = EXAMPLE_CONTENT,
+            tags = listOf("컴포넌트", "성능"),
+            writer = EXAMPLE_WRITER
+        ),
+        CardData.createCard(
+            title = EXAMPLE_TITLE,
+            tags = listOf("컴포넌트", "성능"),
+            writer = EXAMPLE_WRITER
+        ),
+        CardData.createCard(
+            title = EXAMPLE_TITLE,
+            content = EXAMPLE_CONTENT,
+            writer = EXAMPLE_WRITER
+        ),
+        CardData.createCard(
+            title = EXAMPLE_TITLE,
+            writer = EXAMPLE_WRITER
+        ),
+        CardData.createCard(
+            title = MAX_TITLE,
+            content = MAX_CONTENT,
+            tags = listOf("너무너무", "긴 태그", "최대로", "5자 까지", "5개 제한임"),
+            writer = MAX_WRITER
         )
-        Text(
-            writer,
-            overflow = TextOverflow.Ellipsis,
-            maxLines = 1,
-            fontSize = 14.sp,
-            color = Color(WRITER_TEXT_COLOR)
-        )
+    )
+
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(items = testDataCollection) { card ->
+            KanbanBoardCard(card)
+        }
     }
 }
