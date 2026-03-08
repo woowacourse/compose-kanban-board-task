@@ -9,7 +9,7 @@
 
 
 ## 테스트 시나리오
-- [ ] 단위 테스트 구현하기
+- [x] 단위 테스트 구현하기
   - TaskCardData의 모든 값이 빈 값 또는 null 이 아니면 예외가 발생하지 않는다.
   - TaskCardData의 script만 빈 값이 들어오면 예외가 발생하지 않는다.
   - TaskCardData의 tags만 빈 값이 들어오면 예외가 발생하지 않는다.
