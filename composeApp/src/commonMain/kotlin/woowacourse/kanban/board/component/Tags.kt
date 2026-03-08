@@ -15,28 +15,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.CustomColor
-import woowacourse.kanban.board.Size
+import woowacourse.kanban.board.DefaultValue
 
 @Preview(showBackground = true)
 @Composable
 private fun TagsPreview() {
-    val tags = listOf("안녕", "하세요", "ds", "3", "4")
+    val tags = listOf("안녕", "하세요", "이건열글자넘는데열글자까지만나오나", "3", "4", "5","이것도나오나이건나오면안되는데")
     Tags(
         tags = tags,
+        maxTagCount = 6,
+        maxTagTextLength = 10,
     )
 }
 
 @Composable
-fun Tags(tags: List<String>?) {
-    if(!tags.isNullOrEmpty()) {
+fun Tags(tags: List<String>?, maxTagCount: Int = DefaultValue.MAX_TAGS, maxTagTextLength: Int = DefaultValue.TAG_MAX_TEXT_LENGTH) {
+    if (!tags.isNullOrEmpty()) {
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
             modifier = Modifier
                 .fillMaxWidth(),
         ) {
-            tags?.take(Size.TAGS.value)?.forEach { tag ->
-                TagBox(tag.take(Size.TAG_TEXT_LENGTH.value))
+            tags.take(maxTagCount).forEach { tag ->
+                TagBox(tag.take(maxTagTextLength))
             }
         }
     }
