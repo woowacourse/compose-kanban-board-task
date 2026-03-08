@@ -89,14 +89,14 @@ fun CardTitle(title: String) {
 
 // content 컴포넌트 생성 함수
 @Composable
-fun CardContent(description: String?) {
-    if (description != null) {
+fun CardContent(content: String?) {
+    if (content != null) {
         Box (
             modifier = Modifier
                 .testTag(CARD_CONTENT_TEST)
         ){
             Text(
-                description,
+                content,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 14.sp,
