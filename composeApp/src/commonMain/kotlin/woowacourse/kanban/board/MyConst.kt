@@ -16,3 +16,10 @@ const val EXAMPLE_WRITER = "다이노"
 const val MAX_TITLE = "너무너무 긴 제목은 한 줄까지만 노출합니다."
 const val MAX_CONTENT = "너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노출합니다."
 const val MAX_WRITER = "너무너무너무 긴 담당자도 한 줄까지만 노출합니다."
+
+// Test tags
+const val CARD_BODY_TEST = "card body"
+const val CARD_TITLE_TEST = "card title"
+const val CARD_CONTENT_TEST = "card content"
+const val CARD_TAGS_TEST = "card tag"
+const val CARD_WRITER_TEST = "card writer"
