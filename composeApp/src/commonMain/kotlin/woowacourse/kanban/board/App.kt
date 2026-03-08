@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,6 +49,7 @@ fun KanbanBoardCard(cardData: CardData) {
             .clip(RoundedCornerShape(10.dp))
             .background(color = Color(BOARD_BACKGROUND_COLOR))
             .padding(17.dp)
+            .testTag(CARD_BODY_TEST)
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(17.dp)) {
             // 제목 컴포넌트 선언부
@@ -71,7 +73,10 @@ fun KanbanBoardCard(cardData: CardData) {
 // title 컴포넌트 생성 함수
 @Composable
 fun CardTitle(title: String) {
-    Box {
+    Box (
+        modifier = Modifier
+            .testTag(CARD_TITLE_TEST)
+    ){
         Text(
             title,
             maxLines = 1,
@@ -86,7 +91,10 @@ fun CardTitle(title: String) {
 @Composable
 fun CardContent(description: String?) {
     if (description != null) {
-        Box {
+        Box (
+            modifier = Modifier
+                .testTag(CARD_CONTENT_TEST)
+        ){
             Text(
                 description,
                 maxLines = 2,
@@ -103,6 +111,7 @@ fun CardContent(description: String?) {
 fun CardTags (tags: List<String>) {
     if (tags.isNotEmpty() && tags.size <= 5) {
         FlowRow(
+            modifier = Modifier.testTag(CARD_TAGS_TEST),
             verticalArrangement = Arrangement.spacedBy(4.dp),
             horizontalArrangement = Arrangement.spacedBy(6.dp),
         ) {
@@ -130,6 +139,7 @@ fun CardTags (tags: List<String>) {
 @Composable
 fun CardWriterProfile(writer: String) {
     Row(
+        modifier = Modifier.testTag(CARD_WRITER_TEST),
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
