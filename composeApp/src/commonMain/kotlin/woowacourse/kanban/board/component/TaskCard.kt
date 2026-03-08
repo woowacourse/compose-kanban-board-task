@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.AppColors
+import woowacourse.kanban.board.DefaultValue
 import woowacourse.kanban.board.model.TaskCardData
 
 
@@ -34,7 +35,9 @@ private fun TaskCardPreview() {
 @Composable
 fun TaskCard(
     data: TaskCardData,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    maxTagCount: Int = DefaultValue.MAX_TAGS,
+    maxTagTextLength: Int = DefaultValue.TAG_MAX_TEXT_LENGTH,
 ) {
     Card(
         modifier = modifier
@@ -52,7 +55,10 @@ fun TaskCard(
         ) {
             Title(data.title)
             Script(data.script)
-            Tags(data.tags)
+            Tags(
+                tags = data.tags,
+                maxTagCount = maxTagCount,
+                maxTagTextLength = maxTagTextLength)
             HorizontalDivider(
                 thickness = 1.dp,
                 color = AppColors.Divider,
