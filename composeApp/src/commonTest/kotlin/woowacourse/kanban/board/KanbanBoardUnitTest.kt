@@ -3,11 +3,10 @@ package woowacourse.kanban.board
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
-import kotlin.test.assertFails
 import kotlin.test.assertFailsWith
 
 @OptIn(ExperimentalTestApi::class)
-class KanbanBoardDataTest {
+class KanbanBoardUnitTest {
     @Test
     fun `제목 미입력 오류 테스트`() = runComposeUiTest {
         assertFailsWith<IllegalArgumentException> {
