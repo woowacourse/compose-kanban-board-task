@@ -99,4 +99,13 @@ class LayoutBasicsTest {
         // then
         button.assertIsNotEnabled()
     }
+
+    @Test
+    fun `버튼 클릭 시 체크 상태 노출 여부 확인`() = runComposeUiTest {
+        // given
+        var checked by mutableStateOf(true)
+        setContent { CheckerView(check = { }, checked = checked) }
+
+        onNodeWithText("체크됨!").assertExists()
+    }
 }
