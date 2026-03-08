@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.CustomColor
+import woowacourse.kanban.board.AppColors
 import woowacourse.kanban.board.model.TaskCardData
 
 
@@ -42,7 +42,7 @@ fun TaskCard(
         colors = CardDefaults.cardColors(
             containerColor = Color.White,
         ),
-        border = BorderStroke(1.dp, CustomColor.CARD_BORDER.color),
+        border = BorderStroke(1.dp, AppColors.CardBorder),
         shape = RoundedCornerShape(10.dp),
     ) {
         Column(
@@ -55,7 +55,7 @@ fun TaskCard(
             Tags(data.tags)
             HorizontalDivider(
                 thickness = 1.dp,
-                color = CustomColor.DIVIDER.color,
+                color = AppColors.Divider,
             )
             Profile(data.nickname)
         }

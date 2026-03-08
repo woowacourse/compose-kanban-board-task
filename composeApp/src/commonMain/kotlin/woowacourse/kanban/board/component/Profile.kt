@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
 import org.jetbrains.compose.resources.painterResource
-import woowacourse.kanban.board.CustomColor
+import woowacourse.kanban.board.AppColors
 
 @Preview(showBackground = true)
 @Composable
@@ -39,7 +40,7 @@ fun Profile(nickname: String?, modifier: Modifier = Modifier) {
                 text = nickname,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
-                color = CustomColor.PROFILE_NICKNAME.color,
+                color = AppColors.ProfileNickname,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )

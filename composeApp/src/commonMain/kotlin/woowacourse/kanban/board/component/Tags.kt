@@ -11,10 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.CustomColor
+import woowacourse.kanban.board.AppColors
 import woowacourse.kanban.board.DefaultValue
 
 @Preview(showBackground = true)
@@ -50,14 +51,14 @@ private fun TagBox(filteredTag: String) {
         modifier = Modifier
             .clip(RoundedCornerShape(14.dp))
             .background(
-                color = CustomColor.TAG_BACKGROUND.color,
+                color = AppColors.TagBackground,
             )
             .padding(vertical = 4.dp, horizontal = 6.dp),
     ) {
         Text(
             text = filteredTag,
             fontSize = 12.sp,
-            color = CustomColor.TAG_TEXT.color,
+            color = AppColors.TagText,
         )
     }
 }
