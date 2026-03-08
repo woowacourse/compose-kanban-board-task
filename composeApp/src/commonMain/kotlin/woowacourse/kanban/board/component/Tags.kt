@@ -29,12 +29,12 @@ private fun TagsPreview() {
 }
 
 @Composable
-fun Tags(tags: List<String>?, maxTagCount: Int = DefaultValue.MAX_TAGS, maxTagTextLength: Int = DefaultValue.TAG_MAX_TEXT_LENGTH) {
+fun Tags(tags: List<String>?, modifier: Modifier = Modifier, maxTagCount: Int = DefaultValue.MAX_TAGS, maxTagTextLength: Int = DefaultValue.TAG_MAX_TEXT_LENGTH) {
     if (!tags.isNullOrEmpty()) {
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth(),
         ) {
             tags.take(maxTagCount).forEach { tag ->

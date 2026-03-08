@@ -34,9 +34,10 @@ private fun TaskCardPreview() {
 @Composable
 fun TaskCard(
     data: TaskCardData,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .width(286.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White,
@@ -45,7 +46,7 @@ fun TaskCard(
         shape = RoundedCornerShape(10.dp),
     ) {
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .padding(17.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {

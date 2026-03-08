@@ -2,6 +2,7 @@ package woowacourse.kanban.board.component
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,7 +18,7 @@ private fun ScriptPreview() {
 }
 
 @Composable
-fun Script(script: String?) {
+fun Script(script: String?, modifier: Modifier = Modifier) {
     if (!script.isNullOrEmpty()) {
         Text(
             text = script,
@@ -26,6 +27,7 @@ fun Script(script: String?) {
             color = CustomColor.SCRIPT.color,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
+            modifier = modifier
         )
     }
 

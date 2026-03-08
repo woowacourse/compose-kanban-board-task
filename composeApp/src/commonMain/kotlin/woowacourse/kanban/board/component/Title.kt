@@ -2,6 +2,7 @@ package woowacourse.kanban.board.component
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,7 +18,7 @@ private fun TitlePreview() {
 }
 
 @Composable
-fun Title(title: String?) {
+fun Title(title: String?, modifier: Modifier = Modifier) {
     if (!title.isNullOrEmpty()) {
         Text(
             text = title,
@@ -26,6 +27,7 @@ fun Title(title: String?) {
             color = CustomColor.TITLE.color,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
+            modifier = modifier
         )
     }
 }

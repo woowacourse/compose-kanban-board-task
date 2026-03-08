@@ -26,15 +26,15 @@ private fun ProfilePreview() {
 }
 
 @Composable
-fun Profile(nickname: String?) {
+fun Profile(nickname: String?, modifier: Modifier = Modifier) {
     if (!nickname.isNullOrEmpty()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
                 painter = painterResource(Res.drawable.profile),
                 contentDescription = "프로필 이미지",
-                modifier = Modifier.size(24.dp)
+                modifier = modifier.size(24.dp)
             )
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = modifier.width(8.dp))
             Text(
                 text = nickname,
                 fontSize = 14.sp,
