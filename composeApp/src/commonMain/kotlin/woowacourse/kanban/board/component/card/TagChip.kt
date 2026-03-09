@@ -12,6 +12,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.component.preview.TAG_EX
+import woowacourse.kanban.board.component.preview.TAG_MAX_EX
+import woowacourse.kanban.board.domain.Tag
 import woowacourse.kanban.board.theme.Color.blueGray100
 
 @Composable
@@ -36,17 +39,14 @@ fun TagChip(
     }
 }
 
-const val TAG_EX = "컴포넌트"
-const val TAG_MAX_EX = "안녕하세요긴거입니다"
-
 @Preview(showBackground = true)
 @Composable
-fun TagChipPreview() {
+private fun TagChipPreview() {
     TagChip(TAG_EX)
 }
 
 @Preview(showBackground = true)
 @Composable
-fun TagChipMaxPreview() {
+private fun TagChipMaxPreview() {
     TagChip(TAG_MAX_EX)
 }

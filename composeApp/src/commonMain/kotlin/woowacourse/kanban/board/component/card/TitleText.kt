@@ -6,7 +6,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.component.TITLE_MAX_EX
+import woowacourse.kanban.board.component.preview.TITLE_MAX_EX
+import woowacourse.kanban.board.domain.TaskTitle
 
 @Composable
 fun TitleText(title: String? = null) {
@@ -22,12 +23,12 @@ fun TitleText(title: String? = null) {
 
 @Preview(showBackground = true)
 @Composable
-fun TitleTextPreview() {
+private fun TitleTextPreview() {
     TitleText()
 }
 
 @Preview(showBackground = true)
 @Composable
-fun TitleTextMaxPreview() {
+private fun TitleTextMaxPreview() {
     TitleText(TITLE_MAX_EX)
 }

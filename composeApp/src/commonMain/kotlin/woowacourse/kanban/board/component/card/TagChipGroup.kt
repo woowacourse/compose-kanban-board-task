@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.w3c.dom.css.Counter
-import woowacourse.kanban.board.component.TAG_GROUP_MAX_EX
+import woowacourse.kanban.board.component.preview.TAG_GROUP_MAX_EX
+import woowacourse.kanban.board.domain.KanbanTask
 
 @Composable
 fun TagChipGroup(
@@ -32,7 +32,7 @@ fun TagChipGroup(
 
 @Preview(showBackground = true)
 @Composable
-fun TagChipGroupPreview() {
+private fun TagChipGroupPreview() {
     Box(
         modifier = Modifier
             .width(100.dp),
