@@ -3,8 +3,8 @@ package woowacourse.kanban.board.component
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
-import woowacourse.kanban.board.model.TaskCardData
 import kotlin.test.Test
+import woowacourse.kanban.board.model.TaskCardData
 
 @OptIn(ExperimentalTestApi::class)
 class TaskCardTest {
@@ -29,5 +29,4 @@ class TaskCardTest {
         }
         onNodeWithText("다이노").assertExists()
     }
-
 }

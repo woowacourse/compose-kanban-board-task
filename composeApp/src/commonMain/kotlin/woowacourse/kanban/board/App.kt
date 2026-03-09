@@ -1,26 +1,13 @@
 package woowacourse.kanban.board
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.component.Profile
-import woowacourse.kanban.board.component.Script
-import woowacourse.kanban.board.component.Tags
 import woowacourse.kanban.board.component.TaskCard
-import woowacourse.kanban.board.component.Title
 import woowacourse.kanban.board.model.TaskCardData
 
 @Composable
@@ -75,4 +62,3 @@ fun App() {
         )
     }
 }
-

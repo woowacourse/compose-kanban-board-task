@@ -9,7 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +32,7 @@ fun Profile(nickname: String?, modifier: Modifier = Modifier) {
             Image(
                 painter = painterResource(Res.drawable.profile),
                 contentDescription = "프로필 이미지",
-                modifier = modifier.size(24.dp)
+                modifier = modifier.size(24.dp),
             )
             Spacer(modifier = modifier.width(8.dp))
             Text(

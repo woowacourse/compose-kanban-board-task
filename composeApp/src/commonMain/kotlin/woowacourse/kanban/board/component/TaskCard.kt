@@ -18,7 +18,6 @@ import woowacourse.kanban.board.AppColors
 import woowacourse.kanban.board.DefaultValue
 import woowacourse.kanban.board.model.TaskCardData
 
-
 @Preview
 @Composable
 private fun TaskCardPreview() {
@@ -58,7 +57,8 @@ fun TaskCard(
             Tags(
                 tags = data.tags,
                 maxTagCount = maxTagCount,
-                maxTagTextLength = maxTagTextLength)
+                maxTagTextLength = maxTagTextLength,
+            )
             HorizontalDivider(
                 thickness = 1.dp,
                 color = AppColors.Divider,

@@ -1,8 +1,8 @@
 package woowacourse.kanban.board
 
+import kotlin.test.Test
 import org.junit.Assert.assertThrows
 import woowacourse.kanban.board.model.TaskCardData
-import kotlin.test.Test
 
 class TaskCardDataTest {
 
