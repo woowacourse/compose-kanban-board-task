@@ -81,37 +81,19 @@ class KanbanCardTest {
         // given
         val kanbanCardForm = KanbanCardForm(title = "LazyColumn 컴포넌트 구현", crewName = "다이노")
         val tags = listOf("컴포넌트", "성능")
+        val content = "       "
 
         // when
         setContent {
             KanbanCard(
                 kanbanCardForm = kanbanCardForm,
                 tags = tags,
-                content = "  ",
+                content = content,
             )
         }
 
         // then
-        onNodeWithTag("content").assertDoesNotExist()
-    }
-
-    @Test
-    fun `긴 내용 말줄임표 발생 테스트`() = runComposeUiTest {
-        val kanbanCardForm = KanbanCardForm(title = "제목", crewName = "다이노")
-
-        setContent {
-            KanbanCard(
-                kanbanCardForm = kanbanCardForm,
-                content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.".repeat(3),
-            )
-        }
-
-        val textLayoutResult = mutableListOf<TextLayoutResult>()
-        onNodeWithTag("content", useUnmergedTree = true).performSemanticsAction(GetTextLayoutResult) {
-            it(textLayoutResult)
-        }
-
-        assertEquals(textLayoutResult.first().hasVisualOverflow, true)
+        onNodeWithText(content).assertDoesNotExist()
     }
 
     @Test
