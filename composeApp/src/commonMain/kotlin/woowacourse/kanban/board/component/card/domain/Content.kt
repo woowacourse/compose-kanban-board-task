@@ -4,6 +4,10 @@ data class Content(
     val text: String,
 ) {
     init {
-        require(text.isNotBlank()) { "설명을 입력해주세요." }
+        require(text.isNotBlank()) { CONTENT_WANNING_MESSAGE }
+    }
+
+    companion object {
+        const val CONTENT_WANNING_MESSAGE = "설명을 입력해주세요."
     }
 }
