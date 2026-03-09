@@ -3,6 +3,7 @@ package woowacourse.kanban.board.component
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.assertFailsWith
@@ -69,5 +70,42 @@ class KanbanCardTest {
         // then
         onAllNodesWithTag("태그 칩").assertCountEquals(5)
         onNodeWithText("렌더링").assertDoesNotExist()
+    }
+
+    @Test
+    fun `content가 비어 있는 경우 UI 테스트`() = runComposeUiTest {
+        // given
+        val kanbanCardForm = KanbanCardForm(title = "LazyColumn 컴포넌트 구현", crewName = "다이노")
+        val tags = listOf("컴포넌트", "성능")
+
+        // when
+        setContent {
+            KanbanCard(
+                kanbanCardForm = kanbanCardForm,
+                tags = tags,
+            )
+        }
+
+        // then
+        onNodeWithTag("content").assertDoesNotExist()
+    }
+
+    @Test
+    fun `content가 공백인 경우 UI 테스트`() = runComposeUiTest {
+        // given
+        val kanbanCardForm = KanbanCardForm(title = "LazyColumn 컴포넌트 구현", crewName = "다이노")
+        val tags = listOf("컴포넌트", "성능")
+
+        // when
+        setContent {
+            KanbanCard(
+                kanbanCardForm = kanbanCardForm,
+                tags = tags,
+                content = "  ",
+            )
+        }
+
+        // then
+        onNodeWithTag("content").assertDoesNotExist()
     }
 }

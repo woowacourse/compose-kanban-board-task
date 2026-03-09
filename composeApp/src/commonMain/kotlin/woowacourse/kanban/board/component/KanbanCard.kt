@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,6 +55,7 @@ fun KanbanCard(
         if (content.isNotBlank()) {
             Text(
                 text = content,
+                modifier = Modifier.testTag("content"),
                 fontSize = 14.sp,
                 color = Color.DarkGray,
                 maxLines = 2,
