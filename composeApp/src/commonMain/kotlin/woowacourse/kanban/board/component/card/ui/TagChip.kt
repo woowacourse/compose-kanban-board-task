@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.card
+package woowacourse.kanban.board.component.card.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,9 +12,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.component.preview.TAG_EX
-import woowacourse.kanban.board.component.preview.TAG_MAX_EX
-import woowacourse.kanban.board.domain.Tag
+import woowacourse.kanban.board.component.card.preview.TAG_EX
+import woowacourse.kanban.board.component.card.preview.TAG_MAX_EX
 import woowacourse.kanban.board.theme.Color.blueGray100
 
 @Composable

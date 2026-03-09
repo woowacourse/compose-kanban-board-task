@@ -1,12 +1,12 @@
-package woowacourse.kanban.board.component.card
+package woowacourse.kanban.board.component.card.ui
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.component.preview.CONTENT_EX
-import woowacourse.kanban.board.component.preview.CONTENT_MAX_EX
+import woowacourse.kanban.board.component.card.preview.CONTENT_EX
+import woowacourse.kanban.board.component.card.preview.CONTENT_MAX_EX
 import woowacourse.kanban.board.theme.Color.blueGray500
 
 @Composable

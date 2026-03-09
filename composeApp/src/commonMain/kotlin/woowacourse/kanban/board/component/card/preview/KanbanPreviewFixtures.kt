@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.preview
+package woowacourse.kanban.board.component.card.preview
 
 /** preview title message **/
 const val TITLE_MAX_EX = "LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현"

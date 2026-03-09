@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.card
+package woowacourse.kanban.board.component.card.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,8 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.component.preview.TAG_GROUP_MAX_EX
-import woowacourse.kanban.board.domain.KanbanTask
+import woowacourse.kanban.board.component.card.preview.TAG_GROUP_MAX_EX
 
 @Composable
 fun TagChipGroup(

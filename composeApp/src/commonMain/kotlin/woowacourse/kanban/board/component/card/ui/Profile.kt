@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.card
+package woowacourse.kanban.board.component.card.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -15,8 +15,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.component.preview.NAME_EX
-import woowacourse.kanban.board.component.preview.NAME_MAX_EX
+import woowacourse.kanban.board.component.card.preview.NAME_EX
+import woowacourse.kanban.board.component.card.preview.NAME_MAX_EX
 import woowacourse.kanban.board.theme.Color.blueGray300
 import woowacourse.kanban.board.theme.Color.blueGray700
 

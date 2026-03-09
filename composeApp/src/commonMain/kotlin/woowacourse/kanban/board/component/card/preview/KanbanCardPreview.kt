@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.preview
+package woowacourse.kanban.board.component.card.preview
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
