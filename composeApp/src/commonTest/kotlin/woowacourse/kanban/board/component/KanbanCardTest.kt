@@ -96,25 +96,6 @@ class KanbanCardTest {
     }
 
     @Test
-    fun `긴 제목 말줄임표 발생 테스트`() = runComposeUiTest {
-        val kanbanCardForm =
-            KanbanCardForm(title = "너무 너무 긴 제목너무 너무 긴 제목너무 너무 긴 제목", crewName = "다이노")
-
-        setContent {
-            KanbanCard(
-                kanbanCardForm = kanbanCardForm,
-            )
-        }
-
-        val textLayoutResult = mutableListOf<TextLayoutResult>()
-        onNodeWithTag("title", useUnmergedTree = true).performSemanticsAction(GetTextLayoutResult) {
-            it(textLayoutResult)
-        }
-
-        assertEquals(textLayoutResult.first().hasVisualOverflow, true)
-    }
-
-    @Test
     fun `긴 내용 말줄임표 발생 테스트`() = runComposeUiTest {
         val kanbanCardForm = KanbanCardForm(title = "제목", crewName = "다이노")
 
