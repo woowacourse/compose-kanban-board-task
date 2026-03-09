@@ -4,6 +4,7 @@ import androidx.compose.ui.semantics.SemanticsActions.GetTextLayoutResult
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performSemanticsAction
@@ -168,5 +169,18 @@ class KanbanCardTest {
         }
 
         assertEquals(textLayoutResult.first().hasVisualOverflow, true)
+    }
+
+    @Test
+    fun `프로필 이미지가 없다면 기본 이미지 출력 테스트`() = runComposeUiTest {
+        val kanbanCardForm = KanbanCardForm(title = "LazyColumn 컴포넌트 구현", crewName = "다이노")
+
+        setContent {
+            KanbanCard(
+                kanbanCardForm = kanbanCardForm,
+            )
+        }
+
+        onNodeWithContentDescription("기본 이미지").assertExists()
     }
 }
