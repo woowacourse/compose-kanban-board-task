@@ -11,7 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import woowacourse.kanban.board.model.TaskCardDto
+import woowacourse.kanban.board.model.TaskInfo
 import woowacourse.kanban.board.ui.AddButton
 import woowacourse.kanban.board.ui.InputWindow
 import woowacourse.kanban.board.ui.TaskCardList
@@ -19,7 +19,7 @@ import woowacourse.kanban.board.ui.TaskCardList
 @Composable
 @Preview(showBackground = true)
 fun App() {
-    val taskCardGroup = remember { mutableStateListOf<TaskCardDto>() }
+    val taskCardGroup = remember { mutableStateListOf<TaskInfo>() }
     var showInputWindow by remember { mutableStateOf(false) }
 
     Box(

@@ -19,10 +19,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.model.TaskCardDto
+import woowacourse.kanban.board.model.TaskInfo
 
 @Composable
-fun InputWindow(taskCardGroup: SnapshotStateList<TaskCardDto>, showInputWindow: Boolean, onValueChange: (Boolean) -> Unit) {
+fun InputWindow(taskCardGroup: SnapshotStateList<TaskInfo>, showInputWindow: Boolean, onValueChange: (Boolean) -> Unit) {
     var title by remember { mutableStateOf("LazyColumn 컴포넌트 구현") }
     var contents by remember { mutableStateOf("") }
     var tempTag by remember { mutableStateOf("") }
@@ -76,7 +76,7 @@ fun InputWindow(taskCardGroup: SnapshotStateList<TaskCardDto>, showInputWindow: 
             // 확인 버튼
             Button(
                 onClick = {
-                    taskCardGroup.add(TaskCardDto(title, contents, tags, author))
+                    taskCardGroup.add(TaskInfo(title, contents, tags, author))
                     onValueChange(showInputWindow)
                 },
                 modifier = Modifier.align(Alignment.End),
