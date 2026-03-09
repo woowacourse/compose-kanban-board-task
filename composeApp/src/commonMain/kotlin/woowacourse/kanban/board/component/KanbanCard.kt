@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -46,6 +47,7 @@ fun KanbanCard(
     ) {
         Text(
             text = kanbanCardForm.title,
+            modifier = Modifier.fillMaxWidth().testTag("title"),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
             maxLines = 1,
@@ -55,7 +57,7 @@ fun KanbanCard(
         if (content.isNotBlank()) {
             Text(
                 text = content,
-                modifier = Modifier.testTag("content"),
+                modifier = Modifier.fillMaxWidth().testTag("content"),
                 fontSize = 14.sp,
                 color = Color.DarkGray,
                 maxLines = 2,

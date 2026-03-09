@@ -1,11 +1,15 @@
 package woowacourse.kanban.board.component
 
+import androidx.compose.ui.semantics.SemanticsActions.GetTextLayoutResult
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.runComposeUiTest
+import androidx.compose.ui.text.TextLayoutResult
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import org.junit.Test
 
@@ -107,5 +111,62 @@ class KanbanCardTest {
 
         // then
         onNodeWithTag("content").assertDoesNotExist()
+    }
+
+    @Test
+    fun `긴 제목 말줄임표 발생 테스트`() = runComposeUiTest {
+        val kanbanCardForm =
+            KanbanCardForm(title = "너무 너무 긴 제목너무 너무 긴 제목너무 너무 긴 제목", crewName = "다이노")
+
+        setContent {
+            KanbanCard(
+                kanbanCardForm = kanbanCardForm,
+            )
+        }
+
+        val textLayoutResult = mutableListOf<TextLayoutResult>()
+        onNodeWithTag("title", useUnmergedTree = true).performSemanticsAction(GetTextLayoutResult) {
+            it(textLayoutResult)
+        }
+
+        assertEquals(textLayoutResult.first().hasVisualOverflow, true)
+    }
+
+    @Test
+    fun `긴 내용 말줄임표 발생 테스트`() = runComposeUiTest {
+        val kanbanCardForm = KanbanCardForm(title = "제목", crewName = "다이노")
+
+        setContent {
+            KanbanCard(
+                kanbanCardForm = kanbanCardForm,
+                content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.".repeat(3),
+            )
+        }
+
+        val textLayoutResult = mutableListOf<TextLayoutResult>()
+        onNodeWithTag("content", useUnmergedTree = true).performSemanticsAction(GetTextLayoutResult) {
+            it(textLayoutResult)
+        }
+
+        assertEquals(textLayoutResult.first().hasVisualOverflow, true)
+    }
+
+    @Test
+    fun `긴 담당자 말줄임표 발생 테스트`() = runComposeUiTest {
+        val crewName = "너무 긴 담당자 이름너무 긴 담당자 이름너무 긴 담당자 이름"
+        val kanbanCardForm = KanbanCardForm(title = "제목", crewName = crewName)
+
+        setContent {
+            KanbanCard(
+                kanbanCardForm = kanbanCardForm,
+            )
+        }
+
+        val textLayoutResult = mutableListOf<TextLayoutResult>()
+        onNodeWithText(crewName, useUnmergedTree = true).performSemanticsAction(GetTextLayoutResult) {
+            it(textLayoutResult)
+        }
+
+        assertEquals(textLayoutResult.first().hasVisualOverflow, true)
     }
 }
