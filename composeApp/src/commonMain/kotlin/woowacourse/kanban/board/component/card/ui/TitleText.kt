@@ -6,12 +6,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.component.card.domain.Title
 import woowacourse.kanban.board.component.card.preview.TITLE_MAX_EX
 
 @Composable
 fun TitleText(title: String? = null) {
     Text(
-        text = title ?: "LazyColumn 컴포넌트 구현",
+        text = title ?: Title.DEFAULT_TITLE,
         fontSize = 16.sp,
         fontWeight = FontWeight.Medium,
         lineHeight = 24.sp,
