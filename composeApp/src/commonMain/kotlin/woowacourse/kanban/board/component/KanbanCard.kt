@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -74,18 +73,6 @@ fun KanbanCard(
             crewName = crewName,
             crewImage = crewImage,
         )
-    }
-}
-
-@Composable
-private fun KanbanCardTags(tags: List<String>) {
-    FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-        tags
-            .take(5)
-            .forEach { tag -> TagChip(name = tag) }
     }
 }
 
