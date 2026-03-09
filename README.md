@@ -23,4 +23,4 @@
 - [X] UI 테스트 작성
 
 ## 리팩토링 체크리스트
-- [ ] inputWindow 에서 taskCardGroup 을 snapshotStateList로 넘겨주는 것을 개선
+- [X] inputWindow 에서 taskCardGroup 을 snapshotStateList로 넘겨주는 것을 개선
