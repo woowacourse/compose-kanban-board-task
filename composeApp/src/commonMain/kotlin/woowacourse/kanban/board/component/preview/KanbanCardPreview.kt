@@ -21,13 +21,14 @@ private class TagPreviewParameterProvider : PreviewParameterProvider<KanbanCardP
     override val values = sequenceOf(
         KanbanCardPreviewData(
             content = CONTENT_EX,
-            tags = TAG_GROUP_EX)
-        ,
+            tags = TAG_GROUP_EX
+        ),
         KanbanCardPreviewData(
             tags = TAG_GROUP_EX
         ),
         KanbanCardPreviewData(
-            content = CONTENT_EX, tags = TAG_GROUP_EX
+            content = CONTENT_EX,
+            tags = TAG_GROUP_EX
         ),
         KanbanCardPreviewData(),
         KanbanCardPreviewData(
