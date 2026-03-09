@@ -33,7 +33,7 @@ fun AddButton(modifier: Modifier, showInputWindow: Boolean, onValueChange: (Bool
 @Composable
 private fun ButtonContents(resource: DrawableResource, description: String) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Image(
             painter = painterResource(resource),

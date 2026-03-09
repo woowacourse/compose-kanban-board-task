@@ -1,7 +1,5 @@
 package woowacourse.kanban.board.domain
 
-import woowacourse.kanban.board.model.TaskInfo
-
 class TaskValidator {
     fun validateContents(contents: String): Boolean {
         return contents.isNotBlank()

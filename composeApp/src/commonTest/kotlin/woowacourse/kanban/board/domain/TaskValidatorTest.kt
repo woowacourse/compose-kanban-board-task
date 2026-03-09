@@ -1,9 +1,11 @@
 package woowacourse.kanban.board.domain
 
+import androidx.compose.ui.test.ExperimentalTestApi
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Assert.assertFalse
 import kotlin.test.Test
 
+@OptIn(ExperimentalTestApi::class)
 class TaskValidatorTest {
     val taskValidator = TaskValidator()
 
