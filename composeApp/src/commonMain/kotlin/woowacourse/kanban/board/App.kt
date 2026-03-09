@@ -26,9 +26,15 @@ fun App() {
         modifier = Modifier.fillMaxSize(),
     ) {
         TaskCardList(taskCardGroup)
-        AddButton(Modifier.align(Alignment.BottomEnd), showInputWindow) { showInputWindow = true }
+        AddButton(
+            modifier = Modifier.align(Alignment.BottomEnd),
+            onShowInputWindow = { showInputWindow = it },
+        )
         if (showInputWindow) {
-            InputWindow(taskCardGroup, true) { showInputWindow = false }
+            InputWindow(
+                onAddItem = { taskCardGroup.add(it) },
+                onShowInputWindow = { showInputWindow = it },
+            )
         }
     }
 }

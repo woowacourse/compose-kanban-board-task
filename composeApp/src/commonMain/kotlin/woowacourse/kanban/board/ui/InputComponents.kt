@@ -14,7 +14,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
@@ -22,7 +21,10 @@ import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.TaskInfo
 
 @Composable
-fun InputWindow(taskCardGroup: SnapshotStateList<TaskInfo>, showInputWindow: Boolean, onValueChange: (Boolean) -> Unit) {
+fun InputWindow(
+    onAddItem: (TaskInfo) -> Unit,
+    onShowInputWindow: (Boolean) -> Unit,
+) {
     var title by remember { mutableStateOf("LazyColumn 컴포넌트 구현") }
     var contents by remember { mutableStateOf("") }
     var tempTag by remember { mutableStateOf("") }
@@ -76,8 +78,8 @@ fun InputWindow(taskCardGroup: SnapshotStateList<TaskInfo>, showInputWindow: Boo
             // 확인 버튼
             Button(
                 onClick = {
-                    taskCardGroup.add(TaskInfo(title, contents, tags, author))
-                    onValueChange(showInputWindow)
+                    onAddItem(TaskInfo(title, contents, tags, author))
+                    onShowInputWindow(false)
                 },
                 modifier = Modifier.align(Alignment.End),
             ) {
