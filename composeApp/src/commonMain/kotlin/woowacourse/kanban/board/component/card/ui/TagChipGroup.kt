@@ -16,7 +16,7 @@ import woowacourse.kanban.board.component.card.preview.TAG_GROUP_MAX_EX
 fun TagChipGroup(
     tags: List<String>,
     modifier: Modifier = Modifier,
-    maxCount: Int = Tags.MAX_TAG_COUNT,
+    maxCount: Int = Tags.MAX_TAG_COUNT
 ) {
     FlowRow(
         modifier.fillMaxWidth(),

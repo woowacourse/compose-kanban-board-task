@@ -10,7 +10,9 @@ import woowacourse.kanban.board.component.card.domain.Title
 import woowacourse.kanban.board.component.card.preview.TITLE_MAX_EX
 
 @Composable
-fun TitleText(title: String? = null) {
+fun TitleText(
+    title: String? = null
+) {
     Text(
         text = title ?: Title.DEFAULT_TITLE,
         fontSize = 16.sp,

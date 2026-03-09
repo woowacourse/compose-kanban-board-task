@@ -10,7 +10,9 @@ import woowacourse.kanban.board.component.card.preview.CONTENT_MAX_EX
 import woowacourse.kanban.board.theme.Color.blueGray500
 
 @Composable
-fun ContentText(content: String? = null) {
+fun ContentText(
+    content: String? = null
+) {
     content?.let { content ->
         Text(
             text = content,
