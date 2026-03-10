@@ -8,7 +8,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -18,11 +17,10 @@ fun TagChip(name: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .background(Color.LightGray, CircleShape)
-            .padding(vertical = 4.dp, horizontal = 8.dp)
-            .testTag("태그 칩"),
+            .padding(vertical = 4.dp, horizontal = 8.dp),
     ) {
         Text(
-            text = name.take(5),
+            text = name,
             fontSize = 12.sp,
         )
     }
@@ -31,5 +29,5 @@ fun TagChip(name: String, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun TagChipPreview() {
-    TagChip(name = "다섯글자입니다.")
+    TagChip(name = "다섯글자.")
 }
