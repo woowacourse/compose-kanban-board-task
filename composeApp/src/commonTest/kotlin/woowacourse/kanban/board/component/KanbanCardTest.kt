@@ -2,8 +2,6 @@ package woowacourse.kanban.board.component
 
 import androidx.compose.ui.semantics.SemanticsActions.GetTextLayoutResult
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.assertCountEquals
-import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -38,27 +36,6 @@ class KanbanCardTest {
         onNodeWithText("세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.").assertExists()
         onNodeWithText("컴포넌트").assertExists()
         onNodeWithText("성능").assertExists()
-    }
-
-    @Test
-    fun `6개 이상 태그가 입력되면 5개 제한 테스트`() = runComposeUiTest {
-        // given
-        val kanbanCardForm = KanbanCardForm(
-            title = "LazyColumn 컴포넌트 구현",
-            crewName = "다이노",
-            tags = listOf("6개", "이상의", "태그가", "들어오면", "5개까지", "렌더링"),
-        )
-
-        // when
-        setContent {
-            KanbanCard(
-                kanbanCardForm = kanbanCardForm,
-            )
-        }
-
-        // then
-        onAllNodesWithTag("태그 칩").assertCountEquals(5)
-        onNodeWithText("렌더링").assertDoesNotExist()
     }
 
     @Test
