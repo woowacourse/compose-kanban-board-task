@@ -20,7 +20,7 @@ fun TagChip(name: String, modifier: Modifier = Modifier) {
             .padding(vertical = 4.dp, horizontal = 8.dp),
     ) {
         Text(
-            text = name.take(5),
+            text = name,
             fontSize = 12.sp,
         )
     }
@@ -29,5 +29,5 @@ fun TagChip(name: String, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun TagChipPreview() {
-    TagChip(name = "다섯글자입니다.")
+    TagChip(name = "다섯글자.")
 }
