@@ -3,86 +3,58 @@ package woowacourse.kanban.board
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import woowacourse.kanban.board.model.Account
 import woowacourse.kanban.board.model.KanbanCardData
+import woowacourse.kanban.board.model.Tags
+import woowacourse.kanban.board.model.Title
 
 class KanbanBoardDataTest {
 
     @Test
-    fun `제목이 비어 있는 경우 생성 불가능`() {
-        val exception = assertFailsWith<IllegalArgumentException> {
-            KanbanCardData(
-                headerText = "",
-                content = "너무너무너무 긴 설명",
-                tagList = listOf(
-                    "너무너무",
-                ),
-                accountName = "너무너무너무 긴 담당자도 한 줄",
-            )
+    fun `제목이 비어 있는 경우 칸반 보드 카드 생성 불가능`() {
+        assertFailsWith<IllegalArgumentException> {
+            Title("")
         }
-        assertEquals("제목은 비거나 공백일 수 없습니다.", exception.message)
     }
 
     @Test
-    fun `제목이 공백인 경우 생성 불가능`() {
-        val exception = assertFailsWith<IllegalArgumentException> {
-            KanbanCardData(
-                headerText = " ",
-                content = "너무너무너무 긴 설명",
-                tagList = listOf(
-                    "너무너무",
-                ),
-                accountName = "너무너무너무 긴 담당자도 한 줄",
-            )
+    fun `제목이 공백인 경우 칸반 보드 카드 생성 불가능`() {
+        assertFailsWith<IllegalArgumentException> {
+            Title(" ")
         }
-        assertEquals("제목은 비거나 공백일 수 없습니다.", exception.message)
     }
 
     @Test
-    fun `담당자 이름이 비어 있는 경우 생성 불가능`() {
-        val exception = assertFailsWith<IllegalArgumentException> {
-            KanbanCardData(
-                headerText = "제목",
-                content = "설명",
-                tagList = listOf(
-                    "태그",
-                ),
-                accountName = "",
-            )
+    fun `담당자 이름이 비어 있는 경우 칸반 보드 카드 생성 불가능`() {
+        assertFailsWith<IllegalArgumentException> {
+            Account("")
         }
-        assertEquals("담당자 이름은 비거나 공백일 수 없습니다.", exception.message)
     }
 
     @Test
-    fun `담당자 이름이 공백인 경우 생성 불가능`() {
-        val exception = assertFailsWith<IllegalArgumentException> {
-            KanbanCardData(
-                headerText = "제목",
-                content = "설명",
-                tagList = listOf(
-                    "태그",
-                ),
-                accountName = " ",
-            )
+    fun `담당자 이름이 공백인 경우 칸반 보드 카드 생성 불가능`() {
+        assertFailsWith<IllegalArgumentException> {
+            Account(" ")
         }
-        assertEquals("담당자 이름은 비거나 공백일 수 없습니다.", exception.message)
     }
 
     @Test
-    fun `비어 있지 않고 공백도 아닌 데이터로 카드 생성`() {
+    fun `비어 있지 않고 공백도 아닌 데이터로 칸반 보드 카드 생성`() {
         val data = KanbanCardData(
-            headerText = "제목",
+            title = Title("제목"),
             content = "설명",
-            tagList = listOf(
-                "태그",
+            tags = Tags(
+                listOf(
+                    "태그",
+                ),
             ),
-            accountName = "담당자명",
+            account = Account("담당자명"),
         )
 
-        assertEquals("제목", data.headerText)
+        assertEquals("제목", data.title.headerText)
         assertEquals("설명", data.content)
-        assertEquals(listOf("태그"), data.tagList)
-        assertEquals("담당자명", data.accountName)
-        assertEquals(listOf("태그"), data.displayTags)
+        assertEquals(listOf("태그"), data.tags.displayTags)
+        assertEquals("담당자명", data.account.accountName)
         assertEquals(true, data.hasContent)
     }
 }

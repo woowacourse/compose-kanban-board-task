@@ -1,44 +1,37 @@
 package woowacourse.kanban.board
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.compose_multiplatform
-import org.jetbrains.compose.resources.painterResource
+import woowacourse.kanban.board.model.Account
+import woowacourse.kanban.board.model.KanbanCardData
+import woowacourse.kanban.board.model.Tags
+import woowacourse.kanban.board.model.Title
+import woowacourse.kanban.board.ui.KanbanBoardCard
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                Image(painterResource(Res.drawable.compose_multiplatform), null)
-            }
+        Column {
+            KanbanBoardCard(
+                KanbanCardData(
+                    title = Title("너무너무 긴 제목은 한 줄까지만 노출너무너무 긴 제목은 한 줄까지만 노출"),
+                    content = "너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노",
+                    tags = Tags(
+                        listOf(
+                            "너무너무",
+                            "긴 태그",
+                            "최대로",
+                            "5자까지진짜로",
+                            "5개제한임",
+                            "6개",
+                        ),
+                    ),
+                    account = Account("너무너무너무 긴 담당자도 한 줄너무너무너무 긴 담당자도 한 줄"),
+                ),
+            )
         }
     }
 }
