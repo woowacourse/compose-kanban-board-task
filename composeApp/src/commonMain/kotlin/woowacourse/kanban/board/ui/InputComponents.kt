@@ -14,19 +14,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.model.TaskCardDto
+import woowacourse.kanban.board.model.Tag
+import woowacourse.kanban.board.model.TaskInfo
 
 @Composable
-fun InputWindow(taskCardGroup: SnapshotStateList<TaskCardDto>, showInputWindow: Boolean, onValueChange: (Boolean) -> Unit) {
+fun InputWindow(
+    onAddItem: (TaskInfo) -> Unit,
+    onShowInputWindow: (Boolean) -> Unit,
+) {
     var title by remember { mutableStateOf("LazyColumn 컴포넌트 구현") }
     var contents by remember { mutableStateOf("") }
     var tempTag by remember { mutableStateOf("") }
-    var tags by remember { mutableStateOf(listOf<String>()) }
+    var tags by remember { mutableStateOf(listOf<Tag>()) }
     var author by remember { mutableStateOf("다이노") }
 
     OutlinedCard(modifier = Modifier.padding(10.dp)) {
@@ -57,8 +60,8 @@ fun InputWindow(taskCardGroup: SnapshotStateList<TaskCardDto>, showInputWindow: 
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {
-                        if (tempTag.isNotBlank() && !tags.contains(tempTag)) {
-                            tags = tags + tempTag.trim()
+                        if (tempTag.isNotBlank() && !tags.contains(Tag(tempTag))) {
+                            tags = tags + Tag(tempTag.trim())
                             tempTag = ""
                         }
                     },
@@ -76,8 +79,8 @@ fun InputWindow(taskCardGroup: SnapshotStateList<TaskCardDto>, showInputWindow: 
             // 확인 버튼
             Button(
                 onClick = {
-                    taskCardGroup.add(TaskCardDto(title, contents, tags, author))
-                    onValueChange(showInputWindow)
+                    onAddItem(TaskInfo(title, contents, tags, author))
+                    onShowInputWindow(false)
                 },
                 modifier = Modifier.align(Alignment.End),
             ) {

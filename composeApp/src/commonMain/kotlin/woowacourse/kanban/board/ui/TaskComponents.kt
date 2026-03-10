@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,12 +32,13 @@ import androidx.compose.ui.unit.sp
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile_image
 import org.jetbrains.compose.resources.painterResource
-import woowacourse.kanban.board.model.TaskCardDto
-import woowacourse.kanban.board.model.TaskCardDtoProvider
+import woowacourse.kanban.board.model.Tag
+import woowacourse.kanban.board.model.TaskInfo
+import woowacourse.kanban.board.model.TaskInfoProvider
 
 @Preview(showBackground = true)
 @Composable
-fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCardDto) {
+fun TaskCard(@PreviewParameter(TaskInfoProvider::class) taskInfo: TaskInfo) {
     Card(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         border = BorderStroke(1.dp, Color.Gray),
@@ -50,29 +50,29 @@ fun TaskCard(@PreviewParameter(TaskCardDtoProvider::class) taskCardDto: TaskCard
             modifier = Modifier.padding(17.dp),
         ) {
             // 제목
-            TaskTitle(taskCardDto.title)
+            TaskTitle(taskInfo.title)
             // 내용
-            if (taskCardDto.contents.isNotBlank() ) TaskContents(taskCardDto.contents)
+            if (taskInfo.validateContents()) TaskContents(taskInfo.contents)
             // 태그
-            if (taskCardDto.tags.isNotEmpty() && taskCardDto.tags.all { it.isNotEmpty() } ) TaskTags(taskCardDto.tags)
+            if (taskInfo.validateTags()) TaskTags(taskInfo.tags)
             // 작성자
-            TaskAuthor(taskCardDto.author)
+            TaskAuthor(taskInfo.author)
         }
     }
 }
 
 @Composable
-fun TaskCardList(taskCardGroup: List<TaskCardDto>) {
+fun TaskCardList(taskCardGroup: List<TaskInfo>) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         items(taskCardGroup.size) { item ->
-            TaskCard(taskCardDto = taskCardGroup[item])
+            TaskCard(taskInfo = taskCardGroup[item])
         }
     }
 }
 
-// @Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 private fun TaskTitle(@PreviewParameter(TitleProvider::class) title: String) {
     Text(
@@ -93,7 +93,7 @@ private class TitleProvider : PreviewParameterProvider<String> {
     )
 }
 
-// @Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 private fun TaskContents(@PreviewParameter(ContentsProvider::class) contents: String) {
     Text(
@@ -115,23 +115,23 @@ private class ContentsProvider : PreviewParameterProvider<String> {
 }
 
 @Composable
-private fun TaskTags(tags: List<String>) {
+private fun TaskTags(tags: List<Tag>) {
     FlowRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         tags.forEach { tag ->
-            Tag(tag)
+            TaskTag(tag)
         }
     }
 }
 
-// @Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
-private fun Tag(@PreviewParameter(TagProvider::class) tag: String) {
+private fun TaskTag(@PreviewParameter(TagProvider::class) tag: Tag) {
     SuggestionChip(
-        label = { Text(tag, style = TextStyle(fontSize = 12.sp)) },
+        label = { Text(tag.content, style = TextStyle(fontSize = 12.sp)) },
         onClick = { },
         modifier = Modifier.height(24.dp),
     )
@@ -140,7 +140,7 @@ private fun Tag(@PreviewParameter(TagProvider::class) tag: String) {
 private class TagProvider : PreviewParameterProvider<String> {
     override val values: Sequence<String> = sequenceOf(
         "태그",
-        "태그222"
+        "태그222",
     )
 }
 
@@ -156,7 +156,6 @@ private fun TaskAuthor(author: String) {
     }
 }
 
-// @Preview(showBackground = true)
 @Composable
 private fun AuthorIdleImage() {
     Image(
