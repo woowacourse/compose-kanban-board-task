@@ -10,13 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.onChild
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.printToLog
 import androidx.compose.ui.test.runComposeUiTest
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
+import org.assertj.core.api.Assertions.assertThat
 
 @OptIn(ExperimentalTestApi::class)
 class ComposeTestRule {
@@ -52,10 +51,9 @@ class ComposeTestRule {
             }
         }
         counter = 1
-        waitForIdle() //동기화
+        waitForIdle() // 동기화
         assertThat(counter).isEqualTo(latestCounter)
     }
-
 
     @Test
     fun `동기화3`() = runComposeUiTest {
@@ -71,7 +69,7 @@ class ComposeTestRule {
             }
         }
         counter = 1
-        onNodeWithText("1").assertExists()//동기화 할 필요 X
+        onNodeWithText("1").assertExists() // 동기화 할 필요 X
     }
 
     @Test
@@ -89,7 +87,7 @@ class ComposeTestRule {
     fun `노드 병합2`() = runComposeUiTest {
         setContent {
             Button(onClick = {}, modifier = Modifier.testTag("버튼")) {
-                Text("확인",modifier = Modifier.testTag("확인"))
+                Text("확인", modifier = Modifier.testTag("확인"))
                 Text("버튼")
             }
         }
