@@ -40,6 +40,7 @@ class TaskInfoTest {
     fun `태스크 태그가 6개 이상이면 에러가 발생한다`() {
         // given
         val tags = listOf(Tag("1"), Tag("2"), Tag("3"), Tag("4"), Tag("5"), Tag("6"))
+        // when & then
         assertThatThrownBy {
             TaskInfo("제목", "내용", tags, "별터")
         }.isInstanceOf(IllegalArgumentException::class.java)
