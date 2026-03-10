@@ -1,7 +1,7 @@
 package woowacourse.kanban.board.component
 
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.runComposeUiTest
 import org.junit.Test
 
@@ -21,6 +21,6 @@ class KanbanCardTagsTest {
             )
         }
 
-        onNodeWithTag("tags").assertDoesNotExist()
+        onNodeWithContentDescription("칸반 카드 태그 목록").assertDoesNotExist()
     }
 }
