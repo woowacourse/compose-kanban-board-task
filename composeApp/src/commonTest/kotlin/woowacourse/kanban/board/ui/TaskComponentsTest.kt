@@ -3,6 +3,7 @@ package woowacourse.kanban.board.ui
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
+import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TaskInfo
 import kotlin.test.Test
 
@@ -14,7 +15,7 @@ class TaskComponentsTest {
         val taskInfo = TaskInfo(
             title = "컴포넌트",
             contents = "모든 필드가 존재",
-            tags = listOf("성능"),
+            tags = listOf(Tag("성능")),
             author = "별터"
         )
         // when
@@ -34,13 +35,13 @@ class TaskComponentsTest {
         val taskInfo1 = TaskInfo(
             title = "컴포넌트",
             contents = "내용",
-            tags = listOf("성능"),
+            tags = listOf(Tag("성능")),
             author = "별터"
         )
         val taskInfo2 = TaskInfo(
             title = "컴포컴포",
             contents = "내내",
-            tags = listOf("성성"),
+            tags = listOf(Tag("성성")),
             author = "별별"
         )
 
