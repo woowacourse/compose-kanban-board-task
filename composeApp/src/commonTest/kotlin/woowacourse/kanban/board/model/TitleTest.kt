@@ -7,13 +7,13 @@ class TitleTest {
     @Test
     fun `제목은 빈 텍스트일 수 없다`() {
         assertFailsWith<IllegalArgumentException> {
-            Title("")
+            Title(" ")
         }
     }
 
     @Test
-    fun `제목은 유효한 텍스트로 생성된다`() {
-        val title = Title("Task Title")
-        assert(title.text == "Task Title")
+    fun `제목은 텍스트로 입력 시, text에 입력된다`() {
+        val title = Title("제대로 된 제목입니다.")
+        assert(title.text == "제대로 된 제목입니다.")
     }
 }

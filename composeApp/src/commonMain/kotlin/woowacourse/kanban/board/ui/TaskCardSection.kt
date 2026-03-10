@@ -44,7 +44,7 @@ fun TaskCardView(
     ) {
         Column {
             TitleView(title = title)
-            if (!description.isEmpty()) {
+            if (!description.isBlank()) {
                 DescriptionView(description = description)
             }
             if (!tagGroup.isEmpty()) {

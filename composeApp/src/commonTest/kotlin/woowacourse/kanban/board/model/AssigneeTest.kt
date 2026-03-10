@@ -7,13 +7,13 @@ class AssigneeTest {
     @Test
     fun `담당자는 빈 텍스트일 수 없다`() {
         assertFailsWith<IllegalArgumentException> {
-            Assignee("")
+            Assignee(" ")
         }
     }
 
     @Test
-    fun `담당자는 유효한 이름으로 생성된다`() {
-        val assignee = Assignee("John Doe")
-        assert(assignee.name == "John Doe")
+    fun `담당자는 텍스트 입력 시, 객체가 생성된다`() {
+        val assignee = Assignee("다이노")
+        assert(assignee.name == "다이노")
     }
 }

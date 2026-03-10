@@ -1,7 +1,7 @@
 package woowacourse.kanban.board.model
 
 data class Description(val text: String) {
-    fun isEmpty(): Boolean = text.isEmpty()
+    fun isBlank(): Boolean = text.isBlank()
 
     companion object {
         val empty: Description = Description("")
