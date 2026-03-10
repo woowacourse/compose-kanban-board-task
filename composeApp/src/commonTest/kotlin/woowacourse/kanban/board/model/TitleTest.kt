@@ -1,19 +1,20 @@
 package woowacourse.kanban.board.model
 
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 
 class TitleTest {
     @Test
     fun `제목은 빈 텍스트일 수 없다`() {
-        assertFailsWith<IllegalArgumentException> {
+        assertThatThrownBy {
             Title("")
-        }
+        }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test
-    fun `제목은 유효한 텍스트로 생성된다`() {
-        val title = Title("Task Title")
-        assert(title.text == "Task Title")
+    fun `제목이 빈 텍스트가 아니라면 생성할 수 있다`() {
+        assertThat(Title("근사한 제목").text)
+            .isEqualTo("근사한 제목")
     }
 }

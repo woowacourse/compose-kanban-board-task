@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,25 +44,18 @@ import woowacourse.kanban.board.model.Title
 fun TaskCard(
     task: Task,
     modifier: Modifier = Modifier,
-    width: Dp = 286.dp,
-    backgroundColor: Color = Color.White,
-    cornerRadius: Dp = 10.dp,
-    borderColor: Color = CustomColor.GRAY_TASK_CARD_BORDER,
-    borderWidth: Dp = Dp.Hairline,
-    padding: Dp = 17.dp,
 ) {
-    Box(
-        modifier = Modifier.width(width).background(backgroundColor, RoundedCornerShape(cornerRadius))
-            .border(BorderStroke(borderWidth, borderColor), RoundedCornerShape(cornerRadius))
-            .padding(padding).then(modifier),
-    ) {
+    Box(modifier = modifier) {
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             TitleText(title = task.title)
             if (!task.description.isEmpty()) {
-                DescriptionText(description = task.description)
+                DescriptionText(description = task.description, Modifier.testTag("DescriptionText"))
             }
             if (!task.tagGroup.isEmpty()) {
-                TagBadgeGroup(tagGroup = task.tagGroup)
+                TagBadgeGroup(
+                    tagGroup = task.tagGroup,
+                    modifier = Modifier.testTag("TagBadgeGroup"),
+                )
             }
             HorizontalDivider(modifier = Modifier.background(CustomColor.GRAY_TASK_CARD_DIVIDER), thickness = Dp.Hairline)
             AssigneeProfile(assignee = task.assignee)
@@ -70,38 +64,60 @@ fun TaskCard(
 }
 
 @Composable
-private fun TitleText(title: Title, modifier: Modifier = Modifier) {
+private fun TitleText(title: Title) {
     Text(
         text = title.text,
         color = CustomColor.BLUE_TASK_TITLE,
         fontWeight = FontWeight.W500,
         fontSize = TextSize.LARGE,
-        overflow = TextOverflow.Ellipsis, maxLines = 1,
-        modifier = modifier,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
     )
 }
 
 @Composable
-private fun DescriptionText(description: Description) {
+private fun DescriptionText(
+    description: Description,
+    modifier: Modifier = Modifier,
+) {
     Text(
         text = description.text,
         color = CustomColor.GRAY_TASK_DESCRIPTION,
         fontSize = TextSize.MEDIUM,
         overflow = TextOverflow.Ellipsis,
         maxLines = 2,
+        modifier = modifier,
     )
 }
 
+private fun TagGroup.visibleTags(): List<Tag> = tags.take(5)
+
 @Composable
-private fun TagBadgeGroup(tagGroup: TagGroup) {
+private fun TagBadgeGroup(
+    tagGroup: TagGroup,
+    modifier: Modifier = Modifier,
+) {
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = modifier,
     ) {
-        tagGroup.tags.forEach {
-            TagBadge(tag = it, modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp))
+        tagGroup.visibleTags().forEach {
+            TagBadge(tag = it)
         }
     }
+}
+
+@Composable
+private fun TagBadge(tag: Tag) {
+    Text(
+        text = tag.text,
+        fontWeight = FontWeight.W400,
+        color = CustomColor.DARK_BLUE_TAG_TEXT,
+        fontSize = TextSize.SMALL,
+        modifier = Modifier.background(color = CustomColor.GRAY_TAG_BADGE, shape = RoundedCornerShape(16.dp))
+            .padding(horizontal = 8.dp, vertical = 4.dp),
+    )
 }
 
 @Composable
@@ -127,7 +143,12 @@ private fun AssigneeProfile(assignee: Assignee) {
 @Composable
 @Preview
 private fun PreviewTaskCard(@PreviewParameter(TaskProvider::class) task: Task) {
-    TaskCard(task = task)
+    TaskCard(
+        task = task,
+        modifier = Modifier.width(286.dp).background(Color.White, RoundedCornerShape(10.dp))
+            .border(BorderStroke(Dp.Hairline, CustomColor.GRAY_TASK_CARD_BORDER), RoundedCornerShape(10.dp))
+            .padding(17.dp),
+    )
 }
 
 private class TaskProvider : PreviewParameterProvider<Task> {
@@ -159,7 +180,16 @@ private class TaskProvider : PreviewParameterProvider<Task> {
         Task(
             title = Title(text = "너무너무 긴 제목은 한 줄까지만 노출됩니다"),
             description = Description("너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노출하고 말줄임표로 처리합니다"),
-            tagGroup = TagGroup(tags = listOf(Tag("너무너무"), Tag("긴 태그"), Tag("최대로"), Tag("5자까지"), Tag("5개제한임"))),
+            tagGroup = TagGroup(
+                tags = listOf(
+                    Tag("너무너무"),
+                    Tag("긴 태그"),
+                    Tag("최대로"),
+                    Tag("5자까지"),
+                    Tag("5개제한임"),
+                    Tag("6개?"),
+                ),
+            ),
             assignee = Assignee(name = "너무너무너무 긴 담당자도 한 줄까지만 노출됩니다"),
         ),
     )
