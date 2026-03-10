@@ -14,17 +14,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+private class TaskTagsPreviewProvider : PreviewParameterProvider<List<String>> {
+    override val values: Sequence<List<String>> = sequenceOf(
+        listOf("컴포넌트"),
+        listOf("컴포넌트", "성능"),
+        listOf("너무너무", "성능", "긴 태그", "최대로", "5자까지"),
+        emptyList(),
+    )
+}
 
 @Composable
 @Preview(showBackground = true)
-private fun TaskTagsPreview() {
+private fun TaskTagsPreview(
+    @PreviewParameter(TaskTagsPreviewProvider::class) tagNames: List<String>,
+) {
     MaterialTheme {
-        TaskTags(
-            tagNames = listOf("너무너무", "성능", "긴 태그", "최대로", "5자까지", "5개제한임"),
-        )
+        TaskTags(tagNames = tagNames)
     }
 }
 
@@ -52,7 +62,7 @@ private fun TaskTag(tagName: String) {
         contentPadding = PaddingValues(vertical = 5.dp, horizontal = 10.dp),
     ) {
         Text(
-            text = tagName.take(5),
+            text = tagName,
             fontFamily = FontFamily.SansSerif,
             color = Color.Black,
             fontSize = 12.sp,

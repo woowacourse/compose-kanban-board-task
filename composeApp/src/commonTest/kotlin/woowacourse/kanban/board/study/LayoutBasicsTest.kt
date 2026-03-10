@@ -43,13 +43,11 @@ class LayoutBasicsTest {
                 color = Color.Blue,
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.SansSerif
+                fontFamily = FontFamily.SansSerif,
             )
             onNodeWithText(text).assertExists()
             onNodeWithText("안녕 난 컴포즈야~").assertExists()
         }
-
-        // then
         onNodeWithText(text)
             .assertExists()
     }
@@ -59,7 +57,7 @@ class LayoutBasicsTest {
         // given
         setContent {
             Column(
-                modifier = Modifier.testTag("이름")
+                modifier = Modifier.testTag("이름"),
             ) {
                 // 바꿔 보세요!
                 Text(text = "깜포즈", color = Color.Red)
@@ -86,7 +84,7 @@ class LayoutBasicsTest {
                     enabled = false
                 },
                 enabled = enabled,
-                modifier = Modifier.testTag("버튼")
+                modifier = Modifier.testTag("버튼"),
             ) {
                 Text(text = "클릭해주세요")
             }

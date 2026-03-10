@@ -20,24 +20,33 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 
+private const val MAX_LINES = 1
+
+private class TaskContactPreviewProvider : PreviewParameterProvider<String> {
+    override val values: Sequence<String> = sequenceOf(
+        "다이노",
+        "너무너무너무 긴 담당자도 한 줄로 표시됩니다.",
+    )
+}
 
 @Composable
 @Preview(showBackground = true)
-private fun TaskContactPreview() {
+private fun TaskContactPreview(
+    @PreviewParameter(TaskContactPreviewProvider::class) contactName: String,
+) {
     MaterialTheme {
-        TaskContact(contactName = "디이노")
+        TaskContact(contactName = contactName)
     }
 }
 
 @Composable
-fun TaskContact(contactName: String) {
+fun TaskContact(contactName: String, maxLines: Int = MAX_LINES) {
     Row(
-        modifier = Modifier
-            .width(336.dp)
-            .height(60.dp)
-            .drawBehind {
+        modifier = Modifier.width(336.dp).height(60.dp).drawBehind {
                 val strokeWidth = 1.dp.toPx()
                 val y = strokeWidth / 2
 
@@ -52,28 +61,26 @@ fun TaskContact(contactName: String) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         ContactProfile()
-        ContactName(contactName)
+        ContactName(contactName, maxLines)
     }
 }
 
 @Composable
 private fun ContactProfile() {
     Icon(
-        modifier = Modifier
-            .background(Color.White, shape = CircleShape),
+        modifier = Modifier.background(Color.White, shape = CircleShape),
         imageVector = Icons.Default.AccountCircle,
         contentDescription = "계정프로필",
-        tint = Color.Gray
+        tint = Color.Gray,
     )
 }
 
 @Composable
-private fun ContactName(contactName: String) {
+private fun ContactName(contactName: String, maxLines: Int = 1) {
     Text(
         text = contactName,
         fontFamily = FontFamily.SansSerif,
-        maxLines = 1,
+        maxLines = maxLines,
         overflow = TextOverflow.Ellipsis,
-
-        )
+    )
 }
