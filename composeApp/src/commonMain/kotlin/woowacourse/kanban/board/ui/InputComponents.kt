@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TaskInfo
 
 @Composable
@@ -28,7 +29,7 @@ fun InputWindow(
     var title by remember { mutableStateOf("LazyColumn 컴포넌트 구현") }
     var contents by remember { mutableStateOf("") }
     var tempTag by remember { mutableStateOf("") }
-    var tags by remember { mutableStateOf(listOf<String>()) }
+    var tags by remember { mutableStateOf(listOf<Tag>()) }
     var author by remember { mutableStateOf("다이노") }
 
     OutlinedCard(modifier = Modifier.padding(10.dp)) {
@@ -59,8 +60,8 @@ fun InputWindow(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {
-                        if (tempTag.isNotBlank() && !tags.contains(tempTag)) {
-                            tags = tags + tempTag.trim()
+                        if (tempTag.isNotBlank() && !tags.contains(Tag(tempTag))) {
+                            tags = tags + Tag(tempTag.trim())
                             tempTag = ""
                         }
                     },

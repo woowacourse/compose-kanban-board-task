@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.sp
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile_image
 import org.jetbrains.compose.resources.painterResource
-import woowacourse.kanban.board.domain.TaskValidator
+import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TaskInfo
 import woowacourse.kanban.board.model.TaskInfoProvider
 
@@ -49,17 +49,12 @@ fun TaskCard(@PreviewParameter(TaskInfoProvider::class) taskInfo: TaskInfo) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(17.dp),
         ) {
-            val taskValidator = TaskValidator()
-
             // 제목
             TaskTitle(taskInfo.title)
             // 내용
-            if (taskValidator.validateContents(taskInfo.contents)) TaskContents(taskInfo.contents)
+            if (taskInfo.validateContents()) TaskContents(taskInfo.contents)
             // 태그
-            if (taskValidator.validateTags(taskInfo.tags)) {
-                val filteredTags = taskValidator.filterTags(taskInfo.tags)
-                TaskTags(filteredTags)
-            }
+            if (taskInfo.validateTags()) TaskTags(taskInfo.tags)
             // 작성자
             TaskAuthor(taskInfo.author)
         }
@@ -120,23 +115,23 @@ private class ContentsProvider : PreviewParameterProvider<String> {
 }
 
 @Composable
-private fun TaskTags(tags: List<String>) {
+private fun TaskTags(tags: List<Tag>) {
     FlowRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         tags.forEach { tag ->
-            Tag(tag)
+            TaskTag(tag)
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun Tag(@PreviewParameter(TagProvider::class) tag: String) {
+private fun TaskTag(@PreviewParameter(TagProvider::class) tag: Tag) {
     SuggestionChip(
-        label = { Text(tag, style = TextStyle(fontSize = 12.sp)) },
+        label = { Text(tag.content, style = TextStyle(fontSize = 12.sp)) },
         onClick = { },
         modifier = Modifier.height(24.dp),
     )
