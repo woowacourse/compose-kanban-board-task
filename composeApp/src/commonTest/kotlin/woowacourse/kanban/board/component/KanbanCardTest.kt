@@ -18,16 +18,17 @@ class KanbanCardTest {
     @Test
     fun `모든 필드가 있는 카드 테스트`() = runComposeUiTest {
         // given
-        val kanbanCardForm = KanbanCardForm(title = "LazyColumn 컴포넌트 구현", crewName = "다이노")
-        val content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다."
-        val tags = listOf("컴포넌트", "성능")
+        val kanbanCardForm = KanbanCardForm(
+            title = "LazyColumn 컴포넌트 구현",
+            crewName = "다이노",
+            tags = listOf("컴포넌트", "성능"),
+            content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
+        )
 
         // when
         setContent {
             KanbanCard(
                 kanbanCardForm = kanbanCardForm,
-                tags = tags,
-                content = content,
             )
         }
 
@@ -42,14 +43,16 @@ class KanbanCardTest {
     @Test
     fun `6개 이상 태그가 입력되면 5개 제한 테스트`() = runComposeUiTest {
         // given
-        val kanbanCardForm = KanbanCardForm(title = "LazyColumn 컴포넌트 구현", crewName = "다이노")
-        val tags = listOf("6개", "이상의", "태그가", "들어오면", "5개까지", "렌더링")
+        val kanbanCardForm = KanbanCardForm(
+            title = "LazyColumn 컴포넌트 구현",
+            crewName = "다이노",
+            tags = listOf("6개", "이상의", "태그가", "들어오면", "5개까지", "렌더링"),
+        )
 
         // when
         setContent {
             KanbanCard(
                 kanbanCardForm = kanbanCardForm,
-                tags = tags,
             )
         }
 
@@ -61,14 +64,16 @@ class KanbanCardTest {
     @Test
     fun `content가 비어 있는 경우 UI 테스트`() = runComposeUiTest {
         // given
-        val kanbanCardForm = KanbanCardForm(title = "LazyColumn 컴포넌트 구현", crewName = "다이노")
-        val tags = listOf("컴포넌트", "성능")
+        val kanbanCardForm = KanbanCardForm(
+            title = "LazyColumn 컴포넌트 구현",
+            crewName = "다이노",
+            tags = listOf("컴포넌트", "성능"),
+        )
 
         // when
         setContent {
             KanbanCard(
                 kanbanCardForm = kanbanCardForm,
-                tags = tags,
             )
         }
 
@@ -78,17 +83,19 @@ class KanbanCardTest {
 
     @Test
     fun `content가 공백인 경우 UI 테스트`() = runComposeUiTest {
-        // given
-        val kanbanCardForm = KanbanCardForm(title = "LazyColumn 컴포넌트 구현", crewName = "다이노")
-        val tags = listOf("컴포넌트", "성능")
         val content = "       "
+        // given
+        val kanbanCardForm = KanbanCardForm(
+            title = "LazyColumn 컴포넌트 구현",
+            crewName = "다이노",
+            tags = listOf("컴포넌트", "성능"),
+            content = content,
+        )
 
         // when
         setContent {
             KanbanCard(
                 kanbanCardForm = kanbanCardForm,
-                tags = tags,
-                content = content,
             )
         }
 
