@@ -11,10 +11,10 @@ import woowacourse.kanban.board.component.card.preview.TITLE_MAX_EX
 
 @Composable
 fun TitleText(
-    title: String? = null
+    title: String
 ) {
     Text(
-        text = title ?: Title.DEFAULT_TITLE,
+        text = title,
         fontSize = 16.sp,
         fontWeight = FontWeight.Medium,
         lineHeight = 24.sp,
@@ -26,7 +26,7 @@ fun TitleText(
 @Preview(showBackground = true)
 @Composable
 private fun TitleTextPreview() {
-    TitleText()
+    TitleText(Title.DEFAULT_TITLE)
 }
 
 @Preview(showBackground = true)

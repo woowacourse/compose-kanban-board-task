@@ -22,7 +22,7 @@ import woowacourse.kanban.board.theme.Color.blueGray200
 @Composable
 fun KanbanCard(
     name: String,
-    title: String? = null,
+    title: String,
     content: String? = null,
     tags: List<String> = emptyList()
 ) {
@@ -41,7 +41,7 @@ fun KanbanCard(
             .padding(17.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        TitleText(task.title?.text)
+        TitleText(task.title.text)
         ContentText(task.content?.text)
         TagChipGroup(task.tags.map { it.text })
         HorizontalDivider(color = blueGray200)

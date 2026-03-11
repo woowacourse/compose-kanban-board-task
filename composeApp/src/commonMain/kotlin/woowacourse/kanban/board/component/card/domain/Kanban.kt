@@ -1,18 +1,18 @@
 package woowacourse.kanban.board.component.card.domain
 
 data class Kanban(
-    val title: Title?,
+    val title: Title,
     val content: Content?,
     val tags: List<Tags>,
     val name: ProfileName
 ) {
     constructor(
-        title: String?,
+        title: String,
         content: String?,
         tags: List<String>,
         profileName: String
     ) : this(
-        title = Title(title?.trim().orEmpty().ifBlank { Title.DEFAULT_TITLE }),
+        title = Title(title.trim().ifBlank { Title.DEFAULT_TITLE }),
         content = content?.trim().orEmpty().takeIf { it.isNotBlank() }?.let(::Content),
         tags = tags
             .map { it.trim() }
