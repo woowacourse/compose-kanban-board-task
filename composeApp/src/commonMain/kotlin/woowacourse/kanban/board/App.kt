@@ -20,25 +20,32 @@ import androidx.compose.ui.tooling.preview.Preview
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
+import woowacourse.kanban.board.component.KanbanCard
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                Image(painterResource(Res.drawable.compose_multiplatform), null)
-            }
-        }
+//        var showContent by remember { mutableStateOf(false) }
+//        Column(
+//            modifier = Modifier
+//                .background(MaterialTheme.colorScheme.primaryContainer)
+//                .safeContentPadding()
+//                .fillMaxSize(),
+//            horizontalAlignment = Alignment.CenterHorizontally,
+//        ) {
+//            Button(onClick = { showContent = !showContent }) {
+//                Text("Click me!")
+//            }
+//            AnimatedVisibility(showContent) {
+//                Image(painterResource(Res.drawable.compose_multiplatform), null)
+//            }
+//        }
+        KanbanCard(
+            name = "로미" ,
+            title = "안녕하세요, 로미입니다",
+            content = "오늘은 월요일이고, 날씨고 좋네요 오늘 하루 일정은 어떻게 되실까요 즐거운 하루 되세요~",
+            tags = listOf("안드로이드","우테코","우아한테크코스")
+        )
     }
 }

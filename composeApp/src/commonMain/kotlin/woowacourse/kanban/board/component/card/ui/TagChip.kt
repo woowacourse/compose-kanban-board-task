@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.card
+package woowacourse.kanban.board.component.card.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,13 +12,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.component.card.domain.Tag
+import woowacourse.kanban.board.component.card.preview.TAG_EX
+import woowacourse.kanban.board.component.card.preview.TAG_MAX_EX
 import woowacourse.kanban.board.theme.Color.blueGray100
 
 @Composable
 fun TagChip(
     tag: String,
     modifier: Modifier = Modifier,
-    maxLength: Int = 5
+    maxLength: Int = Tag.MAX_LENGTH
 ) {
     Box(
         modifier = modifier
@@ -36,17 +39,14 @@ fun TagChip(
     }
 }
 
-const val TAG_EX = "컴포넌트"
-const val TAG_MAX_EX = "안녕하세요긴거입니다"
-
 @Preview(showBackground = true)
 @Composable
-fun TagChipPreview() {
+private fun TagChipPreview() {
     TagChip(TAG_EX)
 }
 
 @Preview(showBackground = true)
 @Composable
-fun TagChipMaxPreview() {
+private fun TagChipMaxPreview() {
     TagChip(TAG_MAX_EX)
 }

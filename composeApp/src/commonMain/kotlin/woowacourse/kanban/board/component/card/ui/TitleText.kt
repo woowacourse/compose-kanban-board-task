@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.card
+package woowacourse.kanban.board.component.card.ui
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -6,12 +6,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.component.TITLE_MAX_EX
+import woowacourse.kanban.board.component.card.domain.Title
+import woowacourse.kanban.board.component.card.preview.TITLE_MAX_EX
 
 @Composable
-fun TitleText(title: String? = null) {
+fun TitleText(
+    title: String
+) {
     Text(
-        text = title ?: "LazyColumn 컴포넌트 구현",
+        text = title,
         fontSize = 16.sp,
         fontWeight = FontWeight.Medium,
         lineHeight = 24.sp,
@@ -22,12 +25,12 @@ fun TitleText(title: String? = null) {
 
 @Preview(showBackground = true)
 @Composable
-fun TitleTextPreview() {
-    TitleText()
+private fun TitleTextPreview() {
+    TitleText(Title.DEFAULT_TITLE)
 }
 
 @Preview(showBackground = true)
 @Composable
-fun TitleTextMaxPreview() {
+private fun TitleTextMaxPreview() {
     TitleText(TITLE_MAX_EX)
 }
