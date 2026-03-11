@@ -3,7 +3,7 @@ package woowacourse.kanban.board.component.card.domain
 data class Kanban(
     val title: Title,
     val content: Content?,
-    val tags: List<Tags>,
+    val tags: List<Tag>,
     val name: ProfileName
 ) {
     constructor(
@@ -17,8 +17,13 @@ data class Kanban(
         tags = tags
             .map { it.trim() }
             .filter { it.isNotBlank() }
-            .take(Tags.MAX_TAG_COUNT)
-            .map { Tags(it.take(Tags.MAX_LENGTH)) },
+            .take(MAX_TAG_COUNT)
+            .map { Tag(it.take(Tag.MAX_LENGTH)) },
         name = ProfileName(profileName.trim())
     )
+    
+    companion object{
+        const val MAX_TAG_COUNT = 5
+    }
+
 }

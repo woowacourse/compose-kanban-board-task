@@ -9,14 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.component.card.domain.Tags
+import woowacourse.kanban.board.component.card.domain.Tag
 import woowacourse.kanban.board.component.card.preview.TAG_GROUP_MAX_EX
 
 @Composable
 fun TagChipGroup(
     tags: List<String>,
     modifier: Modifier = Modifier,
-    maxCount: Int = Tags.MAX_TAG_COUNT
+    maxCount: Int = Tag.MAX_TAG_COUNT
 ) {
     FlowRow(
         modifier.fillMaxWidth(),

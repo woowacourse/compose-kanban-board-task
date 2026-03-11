@@ -13,7 +13,7 @@ import woowacourse.kanban.board.component.card.preview.TAG_MAX_EX
 import kotlin.test.Test
 
 @OptIn(ExperimentalTestApi::class)
-class TagsTest {
+class TagTest {
 
     @Test
     fun `태그가 5글자를 넘으면 5글자만 표현된다`() = runComposeUiTest {

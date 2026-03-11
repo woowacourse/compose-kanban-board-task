@@ -1,7 +1,7 @@
 package woowacourse.kanban.board.domain
 
 import woowacourse.kanban.board.component.card.domain.Kanban
-import woowacourse.kanban.board.component.card.domain.Tags
+import woowacourse.kanban.board.component.card.domain.Tag
 import woowacourse.kanban.board.component.card.domain.Title
 import woowacourse.kanban.board.component.card.preview.CONTENT_EX
 import woowacourse.kanban.board.component.card.preview.NAME_EX
@@ -11,7 +11,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-class TagsTest {
+class TagTest {
 
     @Test
     fun `태그가 공백이라면 태그를 생성할 수 없다`() {
@@ -19,16 +19,16 @@ class TagsTest {
         val blankTag = "   "
 
         //when
-        val tagBlank = assertFailsWith<IllegalArgumentException> { Tags(blankTag) }
+        val tagBlank = assertFailsWith<IllegalArgumentException> { Tag(blankTag) }
 
         //than
-        assertEquals(Tags.TAGS_WANNING_MESSAGE, tagBlank.message)
+        assertEquals(Tag.TAGS_WANNING_MESSAGE, tagBlank.message)
     }
 
     @Test
     fun `태그가 정상 입력이면 태그가 정상 생성된다`() {
         //give
-        val tag = Tags(TAG_EX)
+        val tag = Tag(TAG_EX)
 
         //when
         val tagInput = tag.text
@@ -52,7 +52,7 @@ class TagsTest {
         val firstTag = task.tags.first().text
 
         //than
-        assertEquals(Tags.MAX_TAG_COUNT, size)
+        assertEquals(Tag.MAX_TAG_COUNT, size)
         assertEquals(TAG_GROUP_MAX_EX[0], firstTag)
     }
 }
