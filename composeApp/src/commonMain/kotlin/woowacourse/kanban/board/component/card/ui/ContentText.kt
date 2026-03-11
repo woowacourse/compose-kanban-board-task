@@ -11,7 +11,7 @@ import woowacourse.kanban.board.theme.Color.blueGray500
 
 @Composable
 fun ContentText(
-    content: String? = null
+    content: String?
 ) {
     content?.let { content ->
         Text(

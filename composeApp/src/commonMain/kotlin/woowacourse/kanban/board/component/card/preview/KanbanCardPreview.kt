@@ -9,10 +9,11 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.component.KanbanCard
+import woowacourse.kanban.board.component.card.domain.Title
 
 private data class KanbanCardPreviewData(
-    val title: String? = null,
-    val content: String? = null,
+    val title: String,
+    val content: String,
     val tags: List<String> = emptyList(),
     val name: String = NAME_EX,
 )
@@ -20,17 +21,24 @@ private data class KanbanCardPreviewData(
 private class TagPreviewParameterProvider : PreviewParameterProvider<KanbanCardPreviewData> {
     override val values = sequenceOf(
         KanbanCardPreviewData(
+            title = Title.DEFAULT_TITLE,
             content = CONTENT_EX,
             tags = TAG_GROUP_EX
         ),
         KanbanCardPreviewData(
-            tags = TAG_GROUP_EX
-        ),
-        KanbanCardPreviewData(
+            title = Title.DEFAULT_TITLE,
             content = CONTENT_EX,
             tags = TAG_GROUP_EX
         ),
-        KanbanCardPreviewData(),
+        KanbanCardPreviewData(
+            title = Title.DEFAULT_TITLE,
+            content = CONTENT_EX,
+            tags = TAG_GROUP_EX
+        ),
+        KanbanCardPreviewData(
+            title = Title.DEFAULT_TITLE,
+            content = CONTENT_EX
+        ),
         KanbanCardPreviewData(
             title = TITLE_MAX_EX,
             content = CONTENT_MAX_EX,
