@@ -4,6 +4,7 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import woowacourse.kanban.board.component.KanbanCard
+import woowacourse.kanban.board.component.card.domain.Kanban
 import woowacourse.kanban.board.component.card.domain.Title
 import woowacourse.kanban.board.component.card.preview.CONTENT_EX
 import woowacourse.kanban.board.component.card.preview.NAME_EX
@@ -18,12 +19,15 @@ class TagTest {
     @Test
     fun `태그가 5글자를 넘으면 5글자만 표현된다`() = runComposeUiTest {
         //give
+        val kanban = Kanban(
+            title = Title.DEFAULT_TITLE,
+            content = CONTENT_EX,
+            tags = listOf(TAG_EX, TAG_MAX_EX),
+            profileName = NAME_EX,
+        )
         setContent {
             KanbanCard(
-                title = Title.DEFAULT_TITLE,
-                content = CONTENT_EX,
-                tags = listOf(TAG_EX, TAG_MAX_EX),
-                name = NAME_EX,
+                kanban = kanban
             )
         }
 
@@ -39,12 +43,16 @@ class TagTest {
     @Test
     fun `태그가 6개 이상이면 5개만 표현된다`() = runComposeUiTest {
         //give
+        val kanban = Kanban(
+            title = Title.DEFAULT_TITLE,
+            content = CONTENT_EX,
+            tags = TAG_GROUP_MAX_EX,
+            profileName = NAME_EX,
+        )
+
         setContent {
             KanbanCard(
-                title = Title.DEFAULT_TITLE,
-                content = CONTENT_EX,
-                tags = TAG_GROUP_MAX_EX,
-                name = NAME_EX,
+                kanban = kanban
             )
         }
 
@@ -68,12 +76,16 @@ class TagTest {
     @Test
     fun `태그가 공백만 포함되면 노출되지 않는다`() = runComposeUiTest {
         //give
+        val kanban = Kanban(
+            title = Title.DEFAULT_TITLE,
+            content = CONTENT_EX,
+            tags = listOf("   ", TAG_EX),
+            profileName = NAME_EX,
+        )
+
         setContent {
             KanbanCard(
-                title = Title.DEFAULT_TITLE,
-                content = CONTENT_EX,
-                tags = listOf("   ", TAG_EX),
-                name = NAME_EX,
+                kanban = kanban
             )
         }
 

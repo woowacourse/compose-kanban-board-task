@@ -1,6 +1,7 @@
 package woowacourse.kanban.board.domain
 
 import woowacourse.kanban.board.component.card.domain.Kanban
+import woowacourse.kanban.board.component.card.domain.Kanban.Companion.MAX_TAG_COUNT
 import woowacourse.kanban.board.component.card.domain.Tag
 import woowacourse.kanban.board.component.card.domain.Title
 import woowacourse.kanban.board.component.card.preview.CONTENT_EX
@@ -52,7 +53,7 @@ class TagTest {
         val firstTag = task.tags.first().text
 
         //than
-        assertEquals(Tag.MAX_TAG_COUNT, size)
+        assertEquals(MAX_TAG_COUNT, size)
         assertEquals(TAG_GROUP_MAX_EX[0], firstTag)
     }
 }

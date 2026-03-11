@@ -4,6 +4,7 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import woowacourse.kanban.board.component.KanbanCard
+import woowacourse.kanban.board.component.card.domain.Kanban
 import woowacourse.kanban.board.component.card.domain.Title
 import woowacourse.kanban.board.component.card.preview.CONTENT_EX
 import woowacourse.kanban.board.component.card.preview.NAME_EX
@@ -16,12 +17,16 @@ class KanbanCardUiTest {
     @Test
     fun `모든 정보가 있으면 모든 필드가 노출된다`() = runComposeUiTest {
         //give
+        val kanban = Kanban(
+            title = Title.DEFAULT_TITLE,
+            content = CONTENT_EX,
+            tags = TAG_GROUP_EX,
+            profileName = NAME_EX,
+        )
+
         setContent {
             KanbanCard(
-                title = Title.DEFAULT_TITLE,
-                content = CONTENT_EX,
-                tags = TAG_GROUP_EX,
-                name = NAME_EX,
+                kanban = kanban
             )
         }
 

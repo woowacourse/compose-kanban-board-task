@@ -4,6 +4,7 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.runComposeUiTest
 import woowacourse.kanban.board.component.KanbanCard
+import woowacourse.kanban.board.component.card.domain.Kanban
 import woowacourse.kanban.board.component.card.domain.ProfileName
 import woowacourse.kanban.board.component.card.domain.Title
 import woowacourse.kanban.board.component.card.preview.CONTENT_EX
@@ -20,12 +21,16 @@ class ProfileTest {
     @Test
     fun `닉네임이 있으면 프로필이 노출된다`() = runComposeUiTest {
         //give
+        val kanban = Kanban(
+            title = Title.DEFAULT_TITLE,
+            content = CONTENT_EX,
+            tags = TAG_GROUP_EX,
+            profileName = NAME_EX,
+        )
+
         setContent {
             KanbanCard(
-                title = Title.DEFAULT_TITLE,
-                content = CONTENT_EX,
-                tags = TAG_GROUP_EX,
-                name = NAME_EX,
+                kanban = kanban,
             )
         }
 
@@ -40,16 +45,18 @@ class ProfileTest {
     fun `닉네임이 공백이면 카드를 생성할 수 없다`() {
         //give
         val blankName = "   "
-
+        val kanban = Kanban(
+            title = Title.DEFAULT_TITLE,
+            content = CONTENT_EX,
+            tags = TAG_GROUP_EX,
+            profileName = blankName,
+        )
         //when
         val nameBlank = assertFailsWith<IllegalArgumentException> {
             runComposeUiTest {
                 setContent {
                     KanbanCard(
-                        title = Title.DEFAULT_TITLE,
-                        content = CONTENT_EX,
-                        tags = TAG_GROUP_EX,
-                        name = blankName,
+                        kanban = kanban,
                     )
                 }
             }
