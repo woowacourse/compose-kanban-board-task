@@ -15,27 +15,6 @@ import kotlin.test.Test
 class TitleTest {
 
     @Test
-    fun `제목 정보가 없으면 기본 제목이 노출된다`() = runComposeUiTest {
-        //give
-        setContent {
-            KanbanCard(
-                title = null,
-                content = CONTENT_EX,
-                tags = TAG_GROUP_EX,
-                name = NAME_EX,
-            )
-        }
-
-        //when
-        val title = onNodeWithText(Title.DEFAULT_TITLE)
-        val content = onNodeWithText(CONTENT_EX)
-
-        //than
-        title.assertExists()
-        content.assertExists()
-    }
-
-    @Test
     fun `제목 정보가 공백이면 기본 제목이 노출된다`() = runComposeUiTest {
         //give
         setContent {

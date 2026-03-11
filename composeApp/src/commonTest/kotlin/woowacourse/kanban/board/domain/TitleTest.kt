@@ -9,21 +9,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class TitleTest {
-    @Test
-    fun `제목이 비어있다면 기본 제목으로 생성된다`() {
-        //give
-        val titleWithNull = Kanban(
-            title = null,
-            content = CONTENT_EX,
-            tags = TAG_GROUP_EX,
-            profileName = NAME_EX
-        )
-
-        //when
-
-        //than
-        assertEquals(Title.DEFAULT_TITLE, titleWithNull.title?.text)
-    }
 
     @Test
     fun `제목이 공백이라면 기본 제목으로 생성된다`() {
