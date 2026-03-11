@@ -21,7 +21,7 @@ data class Kanban(
             .map { Tag(it.take(Tag.MAX_LENGTH)) },
         name = ProfileName(profileName.trim())
     )
-    
+
     companion object{
         const val MAX_TAG_COUNT = 5
     }

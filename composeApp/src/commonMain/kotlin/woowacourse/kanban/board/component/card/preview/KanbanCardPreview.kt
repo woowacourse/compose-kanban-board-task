@@ -9,58 +9,55 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.component.KanbanCard
-import woowacourse.kanban.board.component.card.domain.Title
+import woowacourse.kanban.board.component.card.domain.Kanban
+import woowacourse.kanban.board.component.card.domain.Title.Companion.DEFAULT_TITLE
 
-private data class KanbanCardPreviewData(
-    val title: String,
-    val content: String,
-    val tags: List<String> = emptyList(),
-    val name: String = NAME_EX,
-)
-
-private class TagPreviewParameterProvider : PreviewParameterProvider<KanbanCardPreviewData> {
+private class TagPreviewParameterProvider : PreviewParameterProvider<Kanban> {
     override val values = sequenceOf(
-        KanbanCardPreviewData(
-            title = Title.DEFAULT_TITLE,
+        Kanban(
+            title = DEFAULT_TITLE,
             content = CONTENT_EX,
-            tags = TAG_GROUP_EX
+            tags = TAG_GROUP_EX,
+            profileName = NAME_EX,
         ),
-        KanbanCardPreviewData(
-            title = Title.DEFAULT_TITLE,
+        Kanban(
+            title = DEFAULT_TITLE,
+            content = null,
+            tags = TAG_GROUP_EX,
+            profileName = NAME_EX,
+        ),
+        Kanban(
+            title = DEFAULT_TITLE,
             content = CONTENT_EX,
-            tags = TAG_GROUP_EX
+            tags = emptyList(),
+            profileName = NAME_EX,
         ),
-        KanbanCardPreviewData(
-            title = Title.DEFAULT_TITLE,
+        Kanban(
+            title = " ",
             content = CONTENT_EX,
-            tags = TAG_GROUP_EX
+            tags = TAG_GROUP_EX,
+            profileName = NAME_EX,
         ),
-        KanbanCardPreviewData(
-            title = Title.DEFAULT_TITLE,
-            content = CONTENT_EX
-        ),
-        KanbanCardPreviewData(
+        Kanban(
             title = TITLE_MAX_EX,
             content = CONTENT_MAX_EX,
             tags = TAG_GROUP_MAX_EX,
-            name = NAME_MAX_EX
+            profileName = NAME_MAX_EX,
         ),
     )
 }
 
+
 @Preview(showBackground = true)
 @Composable
 private fun KanbanCardPreview(
-    @PreviewParameter(TagPreviewParameterProvider::class) kanbanCardPreview: KanbanCardPreviewData,
+    @PreviewParameter(TagPreviewParameterProvider::class) kanban: Kanban,
 ) {
     Box(
         modifier = Modifier.padding(10.dp),
     ) {
         KanbanCard(
-            title = kanbanCardPreview.title,
-            content = kanbanCardPreview.content,
-            tags = kanbanCardPreview.tags,
-            name = kanbanCardPreview.name,
+            kanban = kanban
         )
     }
 }

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.component.card.domain.Kanban.Companion.MAX_TAG_COUNT
 import woowacourse.kanban.board.component.card.domain.Tag
 import woowacourse.kanban.board.component.card.preview.TAG_GROUP_MAX_EX
 
@@ -16,7 +17,7 @@ import woowacourse.kanban.board.component.card.preview.TAG_GROUP_MAX_EX
 fun TagChipGroup(
     tags: List<String>,
     modifier: Modifier = Modifier,
-    maxCount: Int = Tag.MAX_TAG_COUNT
+    maxCount: Int = MAX_TAG_COUNT
 ) {
     FlowRow(
         modifier.fillMaxWidth(),

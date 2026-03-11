@@ -21,17 +21,8 @@ import woowacourse.kanban.board.theme.Color.blueGray200
 
 @Composable
 fun KanbanCard(
-    name: String,
-    title: String,
-    content: String? = null,
-    tags: List<String> = emptyList()
+    kanban: Kanban
 ) {
-    val task = Kanban(
-        title = title,
-        content = content,
-        tags = tags,
-        profileName = name
-    )
 
     Column(
         modifier = Modifier
@@ -41,10 +32,10 @@ fun KanbanCard(
             .padding(17.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        TitleText(task.title.text)
-        ContentText(task.content?.text)
-        TagChipGroup(task.tags.map { it.text })
+        TitleText(kanban.title.text)
+        ContentText(kanban.content?.text)
+        TagChipGroup(kanban.tags.map { it.text })
         HorizontalDivider(color = blueGray200)
-        Profile(task.name.text)
+        Profile(kanban.name.text)
     }
 }
